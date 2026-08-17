@@ -1,0 +1,484 @@
+[gd_scene format=3 uid="uid://b81al3u8kdjxd"]
+
+[ext_resource type="Script" uid="uid://b2xawd1qdt77f" path="res://micro_games/garbage_sorting_game/garbage_sort_minigame.gd" id="1_4gs3s"]
+[ext_resource type="Texture2D" uid="uid://b5ur1lapiqfv6" path="res://micro_games/garbage_sorting_game/background_image.jpg" id="2_4gs3s"]
+[ext_resource type="PackedScene" uid="uid://dc0s2ndqmhjg1" path="res://micro_games/garbage_sorting_game/GarbageScene.tscn" id="2_l6p54"]
+[ext_resource type="Script" uid="uid://f0pgeanqq2fy" path="res://micro_games/garbage_sorting_game/garbage_eater_class.gd" id="2_yrv08"]
+[ext_resource type="Texture2D" uid="uid://cgkuccce8f076" path="res://micro_games/garbage_sorting_game/Garbage/Bottles.png" id="3_lcmiv"]
+[ext_resource type="Texture2D" uid="uid://cfn6gxj22xif3" path="res://micro_games/garbage_sorting_game/Garbage/Cans.png" id="4_cchbj"]
+[ext_resource type="Texture2D" uid="uid://c3cjnxqtmt3ce" path="res://micro_games/garbage_sorting_game/Garbage/Cartons.png" id="5_dwxhj"]
+[ext_resource type="Texture2D" uid="uid://bxl6ie2jrg7qu" path="res://micro_games/garbage_sorting_game/Garbage/Chips.png" id="6_eyv7d"]
+[ext_resource type="Texture2D" uid="uid://vkjpr6k8ind7" path="res://micro_games/garbage_sorting_game/Garbage/CompostableContainers.png" id="7_7w6cx"]
+[ext_resource type="Texture2D" uid="uid://q85ii5lbw4p5" path="res://micro_games/garbage_sorting_game/Garbage/FoodScrapsA.png" id="8_hdavo"]
+[ext_resource type="Texture2D" uid="uid://cil4i57jflo7i" path="res://micro_games/garbage_sorting_game/Garbage/FoodScrapsB.png" id="9_hr28f"]
+[ext_resource type="Texture2D" uid="uid://beepu27udqjc1" path="res://micro_games/garbage_sorting_game/Garbage/GarbageCup.png" id="10_yrv08"]
+[ext_resource type="Texture2D" uid="uid://6b34tbnq7etf" path="res://micro_games/garbage_sorting_game/Garbage/MultiplePaperBags.png" id="11_le3r3"]
+[ext_resource type="Texture2D" uid="uid://nsrh334miktc" path="res://micro_games/garbage_sorting_game/Garbage/Paper.png" id="12_lxkte"]
+[ext_resource type="Texture2D" uid="uid://c27po05txrvup" path="res://micro_games/garbage_sorting_game/Garbage/PaperCups.png" id="13_lchmw"]
+[ext_resource type="Texture2D" uid="uid://sswytex33ddk" path="res://micro_games/garbage_sorting_game/Garbage/PaperScrap.png" id="14_btlko"]
+[ext_resource type="Texture2D" uid="uid://bra53pyj3o2wh" path="res://micro_games/garbage_sorting_game/Garbage/PaperStack.png" id="15_cwhi2"]
+[ext_resource type="Texture2D" uid="uid://c631txgflr3ln" path="res://micro_games/garbage_sorting_game/Garbage/PlasticBags.png" id="16_0hx4f"]
+[ext_resource type="Texture2D" uid="uid://cvq5fqxm8abbr" path="res://micro_games/garbage_sorting_game/Garbage/RecycledContainers.png" id="17_emccg"]
+[ext_resource type="Texture2D" uid="uid://1aijyksmn55a" path="res://micro_games/garbage_sorting_game/Garbage/SinglePaperBag.png" id="18_01mji"]
+[ext_resource type="Texture2D" uid="uid://byn3ut8ach37k" path="res://micro_games/garbage_sorting_game/Garbage/Straws.png" id="19_8xw3l"]
+[ext_resource type="Texture2D" uid="uid://byqr2m3gjvn01" path="res://micro_games/garbage_sorting_game/Garbage/Styrofoam.png" id="20_vimo6"]
+[ext_resource type="Texture2D" uid="uid://cnqx26ar7g3ti" path="res://micro_games/garbage_sorting_game/Garbage/Utensils.png" id="21_uftlp"]
+[ext_resource type="Texture2D" uid="uid://bx0xvdg220bvi" path="res://micro_games/garbage_sorting_game/Garbage/Wrapping.png" id="22_xalxi"]
+[ext_resource type="Script" uid="uid://bwl7scojqbecj" path="res://micro_games/garbage_sorting_game/win.gd" id="25_le3r3"]
+[ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="26_lxkte"]
+[ext_resource type="Script" uid="uid://onge6bh3coga" path="res://micro_games/garbage_sorting_game/lose.gd" id="27_lchmw"]
+
+[sub_resource type="Animation" id="Animation_lchmw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.001, 0.001)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.59864795]
+}
+
+[sub_resource type="Animation" id="Animation_btlko"]
+resource_name = "label_anim"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0.001, 0.001), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.001),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Label:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0009999999, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.59864795, -0.59864795]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cwhi2"]
+_data = {
+&"RESET": SubResource("Animation_lchmw"),
+&"label_anim": SubResource("Animation_btlko")
+}
+
+[sub_resource type="Gradient" id="Gradient_lxkte"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lchmw"]
+gradient = SubResource("Gradient_lxkte")
+width = 8
+height = 2
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_btlko"]
+offsets = PackedFloat32Array(0, 0.33, 0.66, 1)
+colors = PackedColorArray(1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_cwhi2"]
+gradient = SubResource("Gradient_btlko")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_0hx4f"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(300, 1, 1)
+direction = Vector3(0, -1, 0)
+initial_velocity_min = 564.51
+initial_velocity_max = 698.92
+gravity = Vector3(0, 392, 0)
+color_initial_ramp = SubResource("GradientTexture1D_cwhi2")
+
+[node name="GarbageSortMinigame" type="Node2D" unique_id=1558161485]
+script = ExtResource("1_4gs3s")
+garbage_count = 3
+control_format = 0
+lose_on_timeout = true
+timer_type = 0
+game_duration = 10.0
+metadata/_custom_type_script = "uid://c6chk3rdyriqb"
+
+[node name="GarbageBins" type="Node2D" parent="." unique_id=1677447543]
+
+[node name="GarbageEater" type="Area2D" parent="GarbageBins" unique_id=1564793671]
+position = Vector2(291, 325)
+script = ExtResource("2_yrv08")
+garbage_type = 0
+metadata/_custom_type_script = "uid://f0pgeanqq2fy"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater" unique_id=1664029714]
+polygon = PackedVector2Array(-24, -19, -61, 21, 27, 22, 55, -17)
+
+[node name="GarbageEater2" type="Area2D" parent="GarbageBins" unique_id=1141130940]
+position = Vector2(483, 326)
+script = ExtResource("2_yrv08")
+garbage_type = 1
+metadata/_custom_type_script = "uid://f0pgeanqq2fy"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater2" unique_id=115815385]
+polygon = PackedVector2Array(-37, -22, -45, 19, 39, 23, 42, -19)
+
+[node name="GarbageEater3" type="Area2D" parent="GarbageBins" unique_id=151615289]
+position = Vector2(716, 326)
+script = ExtResource("2_yrv08")
+garbage_type = 2
+metadata/_custom_type_script = "uid://f0pgeanqq2fy"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater3" unique_id=287155800]
+polygon = PackedVector2Array(-47, -20, -31, 22, 51, 23, 35, -16)
+
+[node name="GarbageEater4" type="Area2D" parent="GarbageBins" unique_id=1125794497]
+position = Vector2(915, 326)
+script = ExtResource("2_yrv08")
+garbage_type = 3
+metadata/_custom_type_script = "uid://f0pgeanqq2fy"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater4" unique_id=1631200532]
+polygon = PackedVector2Array(-59, -17, -29, 24, 54, 23, 14, -19)
+
+[node name="Garbage" type="Node2D" parent="." unique_id=370735925]
+
+[node name="GarbageScene" parent="Garbage" unique_id=2019530728 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 98)
+garbage_type = 2
+texture = ExtResource("3_lcmiv")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene" unique_id=1484227465]
+polygon = PackedVector2Array(-38, -10, -38, 51, -7, 52, 31, 50, 36, 26, 40, -23, 31, -51, 14, -50, 3, -23, -12, -54, -26, -52)
+
+[node name="GarbageScene2" parent="Garbage" unique_id=1251285311 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 461)
+garbage_type = 2
+texture = ExtResource("4_cchbj")
+default_scale = Vector2(0.6, 0.6)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene2" unique_id=347037078]
+polygon = PackedVector2Array(-51, 22, -40, 29, 43, 28, 48, -25, 39, -29, -12, -29, -43, -28, -51, -18)
+
+[node name="GarbageScene3" parent="Garbage" unique_id=30951631 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 476)
+garbage_type = 2
+texture = ExtResource("5_dwxhj")
+default_scale = Vector2(0.6, 0.6)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene3" unique_id=100705536]
+polygon = PackedVector2Array(-40, 28, -14, 35, 1, 31, 27, 35, 37, 25, 41, -32, 14, -36, 4, -29, -28, -32, -32, -23, -40, -16)
+
+[node name="GarbageScene4" parent="Garbage" unique_id=1289210500 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 90)
+garbage_type = 0
+texture = ExtResource("6_eyv7d")
+default_scale = Vector2(0.3, 0.3)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene4" unique_id=1284535572]
+polygon = PackedVector2Array(-32, 51, -31, 25, -28, 5, -18, -13, -19, -38, 5, -57, 16, -38, 23, -36, 26, -20, 18, 0, 27, 31, 33, 56)
+
+[node name="GarbageScene5" parent="Garbage" unique_id=786150088 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 500)
+garbage_type = 1
+texture = ExtResource("7_7w6cx")
+default_scale = Vector2(0.5, 0.5)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene5" unique_id=695680720]
+polygon = PackedVector2Array(-51, 1, -54, 27, 28, 28, 30, 19, 57, 19, 50, -15, 38, -15, 28, -29, -4, -29, -5, -19, -21, -23, -56, -25)
+
+[node name="GarbageScene6" parent="Garbage" unique_id=1604843917 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 82)
+garbage_type = 1
+texture = ExtResource("8_hdavo")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene6" unique_id=781955066]
+polygon = PackedVector2Array(-18, 28, 13, 42, 32, 36, 8, 5, 37, -18, 40, -31, 8, -43, 2, -32, -24, -41, -40, -19, -10, 9)
+
+[node name="GarbageScene7" parent="Garbage" unique_id=251996637 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 211)
+garbage_type = 1
+texture = ExtResource("9_hr28f")
+default_scale = Vector2(0.6, 0.6)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene7" unique_id=937465597]
+polygon = PackedVector2Array(15, 37, 34, 25, 35, -37, 20, -29, -14, -37, -21, -19, -36, -5, -35, 8, -8, 33)
+
+[node name="GarbageScene8" parent="Garbage" unique_id=763356619 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 77)
+garbage_type = 0
+texture = ExtResource("10_yrv08")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene8" unique_id=32708485]
+polygon = PackedVector2Array(-24, -27, -8, 36, 24, 35, 21, -31, 12, -37, -12, -36)
+
+[node name="GarbageScene9" parent="Garbage" unique_id=271869980 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 90)
+garbage_type = 3
+texture = ExtResource("11_le3r3")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene9" unique_id=1651721301]
+polygon = PackedVector2Array(-61, 30, -25, 30, -25, 35, 35, 36, 38, 24, 53, 24, 59, 20, 62, -31, 26, -32, 20, -12, 6, -12, 9, -34, -30, -37, -38, -20, -54, -19)
+
+[node name="GarbageScene10" parent="Garbage" unique_id=842983077 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 575)
+garbage_type = 3
+texture = ExtResource("12_lxkte")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene10" unique_id=711165320]
+polygon = PackedVector2Array(-1, 37, 9, 29, 32, 37, 41, 31, 57, -17, 42, -33, 8, -39, -24, -30, -55, 12, -31, 27)
+
+[node name="GarbageScene11" parent="Garbage" unique_id=242396361 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 419)
+garbage_type = 3
+texture = ExtResource("13_lchmw")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene11" unique_id=21958979]
+polygon = PackedVector2Array(-69, -28, -73, 32, -43, 27, -34, 30, -11, 30, -6, 26, 0, 29, 25, 29, 29, 25, 32, 30, 58, 30, 62, 24, 73, -23, 37, -23, 5, -25, -30, -27)
+
+[node name="GarbageScene12" parent="Garbage" unique_id=399093046 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 85)
+garbage_type = 3
+texture = ExtResource("14_btlko")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene12" unique_id=1099458384]
+polygon = PackedVector2Array(-70, -15, -78, 22, 73, 22, 78, -13, 59, -22, 41, -11, 30, -17, 18, -18, 5, -12, -12, -18, -26, -11, -31, -20, -48, -25, -58, -24)
+
+[node name="GarbageScene13" parent="Garbage" unique_id=998098829 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 98)
+garbage_type = 3
+texture = ExtResource("15_cwhi2")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene13" unique_id=601172375]
+polygon = PackedVector2Array(-34, -22, -41, -11, -40, -5, -45, 8, -41, 12, -40, 22, -43, 28, -35, 29, -30, 34, -14, 34, -10, 36, 16, 35, 21, 33, 38, 33, 45, 6, 39, 1, 48, -5, 45, -28, 16, -36)
+
+[node name="GarbageScene14" parent="Garbage" unique_id=251496414 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 563)
+garbage_type = 0
+texture = ExtResource("16_0hx4f")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene14" unique_id=1457431367]
+polygon = PackedVector2Array(-34, 22, -10, 24, 1, 38, 24, 24, 39, 23, 27, -24, 0, -19, -15, -37, -24, -30, -15, -17, -21, -14, -31, -21, -40, -18, -34, -12, -41, -12, -40, -2, -28, -2, -25, 12, -36, 13)
+
+[node name="GarbageScene15" parent="Garbage" unique_id=1636276852 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 518)
+garbage_type = 2
+texture = ExtResource("17_emccg")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene15" unique_id=2097691833]
+polygon = PackedVector2Array(-56, 45, 1, 46, 8, 40, 41, 38, 56, 27, 59, 2, 19, -5, 28, -41, 20, -45, -5, -45, -17, -39, -42, -41, -55, -32, -49, 26)
+
+[node name="GarbageScene16" parent="Garbage" unique_id=24724292 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 505)
+garbage_type = 3
+texture = ExtResource("18_01mji")
+default_scale = Vector2(1.3, 1.3)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene16" unique_id=926190755]
+polygon = PackedVector2Array(-39, 42, 17, 52, 34, 37, 39, -28, 22, -31, 17, -51, 7, -55, -8, -46, -10, -33, -24, -33, -29, -26)
+
+[node name="GarbageScene17" parent="Garbage" unique_id=1467726380 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 335)
+garbage_type = 0
+texture = ExtResource("19_8xw3l")
+default_scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene17" unique_id=1435524529]
+polygon = PackedVector2Array(-47, -19, 32, -42, 54, -38, 56, -20, -16, 40, -34, 30, -48, 26, -55, 1, -47, -5)
+
+[node name="GarbageScene18" parent="Garbage" unique_id=1957262330 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 482)
+garbage_type = 0
+texture = ExtResource("20_vimo6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene18" unique_id=1825382357]
+polygon = PackedVector2Array(-34, 38, 36, 42, 27, -35, -26, -42, -39, -7)
+
+[node name="GarbageScene19" parent="Garbage" unique_id=1796361661 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 213)
+garbage_type = 2
+texture = ExtResource("21_uftlp")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene19" unique_id=940044539]
+polygon = PackedVector2Array(-8, 49, 19, 38, 35, -34, 28, -43, -3, -50, -27, -49, -37, -41, -27, 45)
+
+[node name="GarbageScene20" parent="Garbage" unique_id=1059410935 instance=ExtResource("2_l6p54")]
+position = Vector2(-1000, 568)
+garbage_type = 3
+texture = ExtResource("22_xalxi")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Garbage/GarbageScene20" unique_id=1568617687]
+polygon = PackedVector2Array(-60, -50, -22, -37, -1, -52, 29, -29, 36, -36, 69, -13, 48, 24, 41, 20, 2, 54, -17, 35, -30, 47, -71, -6, -61, -12)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1194464020]
+layer = -1
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1575972385]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Control" unique_id=48036941]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_4gs3s")
+expand_mode = 1
+
+[node name="EndScreenLayer" type="CanvasLayer" parent="." unique_id=1801711127]
+layer = 2
+
+[node name="Win" type="Control" parent="EndScreenLayer" unique_id=2022503782]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("25_le3r3")
+
+[node name="ColorRect" type="ColorRect" parent="EndScreenLayer/Win" unique_id=1768205167]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.10980392)
+
+[node name="Label" type="Label" parent="EndScreenLayer/Win" unique_id=1737356611]
+visible = false
+custom_minimum_size = Vector2(600, 100)
+layout_mode = 0
+offset_left = 302.0
+offset_top = 243.0
+offset_right = 902.0
+offset_bottom = 343.0
+rotation = -0.59864795
+scale = Vector2(0.001, 0.001)
+pivot_offset = Vector2(300, 50)
+theme_override_fonts/font = ExtResource("26_lxkte")
+theme_override_font_sizes/font_size = 92
+text = "GREAT JOB!!!!!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="EndScreenLayer/Win" unique_id=1658331391]
+libraries/ = SubResource("AnimationLibrary_cwhi2")
+speed_scale = 4.0
+
+[node name="ConfettiParticles" type="GPUParticles2D" parent="EndScreenLayer/Win" unique_id=1402794934]
+position = Vector2(576, 660)
+emitting = false
+amount = 1200
+texture = SubResource("GradientTexture2D_lchmw")
+lifetime = 4.0
+one_shot = true
+explosiveness = 0.96
+process_material = SubResource("ParticleProcessMaterial_0hx4f")
+
+[node name="Lose" type="Control" parent="EndScreenLayer" unique_id=2019887702]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("27_lchmw")
+lose_messages = Array[String](["You Failed", "Tragic", "L", "|  |,  ||  |_", "Buddy...", "Can't even sort trash LMAO", "At least you tried"])
+
+[node name="ColorRect" type="ColorRect" parent="EndScreenLayer/Lose" unique_id=1563369250]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="EndScreenLayer/Lose" unique_id=630879049]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(1, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("26_lxkte")
+theme_override_font_sizes/normal_font_size = 96
+bbcode_enabled = true
+text = "[shake rate=20.0 level=15]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpawnReference" type="Node2D" parent="." unique_id=150988259]
+position = Vector2(576, 324)
+
+[connection signal="lose" from="." to="." method="_on_lose"]

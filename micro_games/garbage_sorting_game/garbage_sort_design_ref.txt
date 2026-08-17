@@ -1,0 +1,13 @@
+A simple game about sorting garbage
+
+Use the mouse to drag garbage into the right bin
+
+Lose if you run out of time
+
+Win once all trash is sorted
+
+The game will not allow you to sort
+trash into the wrong bin.
+
+Trash spawns all over the screen
+(though away from the bins so as to not be presorted)

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="MicroGameInfo" format=3 uid="uid://dhd25aoiae4b6"]
+
+[ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="1_lgf3c"]
+[ext_resource type="PackedScene" uid="uid://b81al3u8kdjxd" path="res://micro_games/garbage_sorting_game/garbage_sorting_game/GarbageSortMinigame.tscn" id="1_wrfvs"]
+
+[resource]
+script = ExtResource("1_lgf3c")
+title = "Garbage Sorting"
+authors = "Everett"
+description = "You sort trash.
+That's it. That's the game.
+I'm a very good game dev."
+game_scene = ExtResource("1_wrfvs")
+metadata/_custom_type_script = "uid://dciiueikp53p7"
