@@ -52,4 +52,6 @@ func garbage_consumed():
 func _on_lose():
 	lose_screen.lose()
 	timer_label.stop()
+	for b in garbage_bins:
+		b.set_deferred("monitoring", false)
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
