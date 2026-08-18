@@ -473,7 +473,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("27_lchmw")
-lose_messages = Array[String](["You Failed", "Tragic", "L", "|  |,  ||  |_", "Buddy...", "Can't even sort trash LMAO", "At least you tried"])
+lose_messages = Array[String](["You Failed", "Tragic", "L", "|  |,  ||  |_", "Buddy...", "Can't even sort trash LMAO", "At least you tried", ":("])
 
 [node name="ColorRect" type="ColorRect" parent="EndScreenLayer/Lose" unique_id=1563369250]
 modulate = Color(1, 1, 1, 0)
