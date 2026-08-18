@@ -11,6 +11,7 @@ extends MicroGame
 @onready var rng = RandomNumberGenerator.new()
 @onready var win_screen := $EndScreenLayer/Win
 @onready var lose_screen := $EndScreenLayer/Lose
+@onready var timer_label := $CanvasLayer/Control/TimerLabel
 
 @export var garbage_count : int = 10:
 	set(new):
@@ -20,13 +21,15 @@ extends MicroGame
 			print("your did it!!!1!")
 			Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 			win_screen.win()
+			timer_label.stop()
 			win.emit()
 
 func _ready():
 	arrange_garbage()
 	connect_bins()
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	Input.set_custom_mouse_cursor(hand_open_png)
+	Input.set_custom_mouse_cursor(hand_open_png, 0, Vector2(32, 32))
+	timer_label.start(game_duration)
 
 func arrange_garbage():
 	for i in garbage_count:
@@ -48,4 +51,5 @@ func garbage_consumed():
 
 func _on_lose():
 	lose_screen.lose()
+	timer_label.stop()
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN

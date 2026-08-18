@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://b81al3u8kdjxd"]
 
 [ext_resource type="Script" uid="uid://b2xawd1qdt77f" path="res://micro_games/garbage_sorting_game/garbage_sort_minigame.gd" id="1_4gs3s"]
-[ext_resource type="Texture2D" uid="uid://b5ur1lapiqfv6" path="res://micro_games/garbage_sorting_game/background_image.jpg" id="2_4gs3s"]
 [ext_resource type="PackedScene" uid="uid://dc0s2ndqmhjg1" path="res://micro_games/garbage_sorting_game/GarbageScene.tscn" id="2_l6p54"]
 [ext_resource type="Script" uid="uid://f0pgeanqq2fy" path="res://micro_games/garbage_sorting_game/garbage_eater_class.gd" id="2_yrv08"]
 [ext_resource type="Texture2D" uid="uid://cgkuccce8f076" path="res://micro_games/garbage_sorting_game/Garbage/Bottles.png" id="3_lcmiv"]
@@ -24,9 +23,16 @@
 [ext_resource type="Texture2D" uid="uid://byqr2m3gjvn01" path="res://micro_games/garbage_sorting_game/Garbage/Styrofoam.png" id="20_vimo6"]
 [ext_resource type="Texture2D" uid="uid://cnqx26ar7g3ti" path="res://micro_games/garbage_sorting_game/Garbage/Utensils.png" id="21_uftlp"]
 [ext_resource type="Texture2D" uid="uid://bx0xvdg220bvi" path="res://micro_games/garbage_sorting_game/Garbage/Wrapping.png" id="22_xalxi"]
+[ext_resource type="Texture2D" uid="uid://buq4iew6lhn1k" path="res://micro_games/garbage_sorting_game/BackgroundWithTimerArea.png" id="24_lchmw"]
+[ext_resource type="Shader" uid="uid://bxnqpnjeldy0x" path="res://micro_games/garbage_sorting_game/skew_shader.gdshader" id="25_cwhi2"]
 [ext_resource type="Script" uid="uid://bwl7scojqbecj" path="res://micro_games/garbage_sorting_game/win.gd" id="25_le3r3"]
+[ext_resource type="Script" uid="uid://bvcfollvjjtj" path="res://micro_games/garbage_sorting_game/timer_label.gd" id="26_btlko"]
 [ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="26_lxkte"]
 [ext_resource type="Script" uid="uid://onge6bh3coga" path="res://micro_games/garbage_sorting_game/lose.gd" id="27_lchmw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0hx4f"]
+shader = ExtResource("25_cwhi2")
+shader_parameter/skew_factor = -0.105
 
 [sub_resource type="Animation" id="Animation_lchmw"]
 length = 0.001
@@ -384,8 +390,25 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("2_4gs3s")
+texture = ExtResource("24_lchmw")
 expand_mode = 1
+
+[node name="TimerLabel" type="Label" parent="CanvasLayer/Control" unique_id=1257630718]
+modulate = Color(0.9253244, 0.8760938, 0.8461528, 1)
+material = SubResource("ShaderMaterial_0hx4f")
+layout_mode = 0
+offset_left = 326.0
+offset_top = 544.0
+offset_right = 434.0
+offset_bottom = 628.0
+theme_override_fonts/font = ExtResource("26_lxkte")
+theme_override_font_sizes/font_size = 96
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("26_btlko")
+
+[node name="Timer" type="Timer" parent="CanvasLayer/Control/TimerLabel" unique_id=1423022907]
 
 [node name="EndScreenLayer" type="CanvasLayer" parent="." unique_id=1801711127]
 layer = 2

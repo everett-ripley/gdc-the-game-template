@@ -45,7 +45,7 @@ var grab_state := grab_states.ungrabbed:
 				sprite.z_index = 1
 				jiggle()
 				glow_effect.hide()
-				Input.set_custom_mouse_cursor(hand_closed_png)
+				Input.set_custom_mouse_cursor(hand_closed_png, 0, Vector2(32, 32))
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -55,7 +55,7 @@ func _input(event):
 		elif !event.is_pressed() and grab_state == grab_states.grabbed:
 			print("Stop")
 			grab_state = grab_states.grabbable
-			Input.set_custom_mouse_cursor(hand_open_png)
+			Input.set_custom_mouse_cursor(hand_open_png, 0, Vector2(32, 32))
 			glow_effect.show()
 	if event is InputEventMouseMotion:
 		if grab_state == grab_states.grabbed:
@@ -87,7 +87,7 @@ func _on_mouse_exited():
 
 func throw_away(target_position:Vector2):
 	glow_effect.hide()
-	Input.set_custom_mouse_cursor(hand_open_png)
+	Input.set_custom_mouse_cursor(hand_open_png, 0, Vector2(32, 32))
 	set_deferred("monitorable", false)
 	set_deferred("monitoring", false)
 	disconnect("mouse_entered", _on_mouse_entered)
