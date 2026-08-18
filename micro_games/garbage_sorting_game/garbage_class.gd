@@ -24,6 +24,7 @@ extends Area2D
 @onready var glow_effect := $GlowEffect
 
 const throw_away_anim_time : float = 0.4
+const squish_factor : float = 0.7
 
 enum grab_states {
 	ungrabbed,
@@ -70,8 +71,8 @@ func unhighlight():
 
 func jiggle():
 	var t := create_tween()
-	t.tween_property(ref, "scale", Vector2(0.8, 1.2), 0.1)
-	t.tween_property(ref, "scale", Vector2(1.2, 0.8), 0.1)
+	t.tween_property(ref, "scale", Vector2(1.0 - squish_factor, 1.0 + squish_factor), 0.1)
+	t.tween_property(ref, "scale", Vector2(1.0 + squish_factor, 1.0 - squish_factor), 0.1)
 	t.tween_property(ref, "scale", Vector2.ONE, 0.1)
 
 func _on_mouse_entered():
