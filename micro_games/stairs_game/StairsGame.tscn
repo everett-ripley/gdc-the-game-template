@@ -1,0 +1,223 @@
+[gd_scene format=3 uid="uid://cmfg2ghu2npna"]
+
+[ext_resource type="Script" uid="uid://b4xejn4limssg" path="res://micro_games/stairs_game/stairs_game.gd" id="1_74bqn"]
+[ext_resource type="Script" uid="uid://stpq6iewg3hj" path="res://micro_games/stairs_game/climb_path.gd" id="2_1r8yx"]
+[ext_resource type="Texture2D" uid="uid://cii16bliu607b" path="res://micro_games/stairs_game/key.png" id="2_5tai5"]
+[ext_resource type="Script" uid="uid://b7ga7mpbk3nup" path="res://micro_games/stairs_game/hud.gd" id="2_d2ay4"]
+[ext_resource type="Texture2D" uid="uid://11wdhd6ndqox" path="res://micro_games/stairs_game/background.png" id="2_fg7ih"]
+[ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="3_o2k14"]
+[ext_resource type="Texture2D" uid="uid://cnito6v6bfjnk" path="res://micro_games/stairs_game/guy.png" id="3_rudls"]
+
+[sub_resource type="Curve2D" id="Curve2D_o30ad"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 202, 439, 0, 0, 0, 0, 406, 199)
+}
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_d2ay4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Key:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Key:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(764, 211)]
+}
+
+[sub_resource type="Animation" id="Animation_qyo0o"]
+resource_name = "key_hit"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.795, 0.225), Vector2(0.76, 1.25), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Key:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(764, 211)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Key:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1r8yx"]
+resource_name = "key_missed"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Key:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 1, 1, 1), Color(0.46832663, 6.437488e-07, 1.6845763e-07, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Key:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(764, 211), Vector2(714, 211), Vector2(814, 211), Vector2(764, 211)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Key:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1r8yx"]
+_data = {
+&"RESET": SubResource("Animation_d2ay4"),
+&"key_hit": SubResource("Animation_qyo0o"),
+&"key_missed": SubResource("Animation_1r8yx")
+}
+
+[node name="StairsGame" type="Node2D" unique_id=121516237]
+script = ExtResource("1_74bqn")
+step_progress = Array[float]([0.0, 0.145, 0.285, 0.41, 0.52, 0.625, 0.715, 0.795, 0.87, 0.94, 1.0])
+game_duration = 10.0
+
+[node name="ClimbPath" type="Path2D" parent="." unique_id=1666859649]
+curve = SubResource("Curve2D_o30ad")
+script = ExtResource("2_1r8yx")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="ClimbPath" unique_id=1009348563]
+position = Vector2(202, 439)
+rotates = false
+loop = false
+
+[node name="Ref" type="Node2D" parent="ClimbPath/PathFollow2D" unique_id=208279644]
+
+[node name="Sprite2D" type="Sprite2D" parent="ClimbPath/PathFollow2D/Ref" unique_id=628206700]
+texture = ExtResource("3_rudls")
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=1858420495]
+layer = 2
+script = ExtResource("2_d2ay4")
+
+[node name="Control" type="Control" parent="HUD" unique_id=1782589578]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Key" type="TextureRect" parent="HUD/Control" unique_id=809030619]
+layout_mode = 0
+offset_left = 764.0
+offset_top = 211.0
+offset_right = 892.0
+offset_bottom = 339.0
+pivot_offset = Vector2(64, 112)
+texture = ExtResource("2_5tai5")
+
+[node name="KeyLabel" type="Label" parent="HUD/Control/Key" unique_id=1371514206]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -16.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o2k14")
+theme_override_font_sizes/font_size = 80
+text = "W"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Control" unique_id=1670950615]
+libraries/ = SubResource("AnimationLibrary_1r8yx")
+
+[node name="Background" type="CanvasLayer" parent="." unique_id=638020365]
+layer = -1
+
+[node name="Control" type="Control" parent="Background" unique_id=1860453575]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Background/Control" unique_id=581808998]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fg7ih")
+expand_mode = 1
+
+[connection signal="key_hit" from="HUD" to="." method="_on_hud_key_hit"]
