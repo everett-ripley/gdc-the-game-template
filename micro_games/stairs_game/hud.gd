@@ -4,6 +4,12 @@ signal key_missed
 
 @onready var key_label := $Control/Key/KeyLabel
 @onready var anim := $Control/AnimationPlayer
+@onready var time_display := $Control/TimeDisplay
+
+var time_left : float = 10.0:
+	set(new):
+		time_left = new
+		time_display.set_time_left(new)
 
 var enabled : bool = true:
 	set(new):
@@ -41,3 +47,7 @@ func _input(event):
 			else:
 				key_missed.emit()
 				anim.play("key_missed")
+
+
+func _process(delta):
+	time_left -= delta

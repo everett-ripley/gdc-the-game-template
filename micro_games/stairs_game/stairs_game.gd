@@ -26,6 +26,10 @@ var step : int = 0:
 			win.emit()
 
 
+func _ready():
+	hud.time_left = game_duration
+
+
 func _on_hud_key_hit():
 	if step < 10:
 		step += 1

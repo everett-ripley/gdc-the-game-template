@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cnito6v6bfjnk" path="res://micro_games/stairs_game/guy.png" id="3_rudls"]
 [ext_resource type="Texture2D" uid="uid://dfb31vmpabfm1" path="res://icon.svg" id="5_o30ad"]
 [ext_resource type="Shader" uid="uid://b18efo12q07tg" path="res://micro_games/stairs_game/gray_scale_shader.gdshader" id="5_we1sv"]
+[ext_resource type="Script" uid="uid://c8h3y6f5r1w7c" path="res://micro_games/stairs_game/time_display.gd" id="11_3g0py"]
 
 [sub_resource type="Curve2D" id="Curve2D_o30ad"]
 _data = {
@@ -221,6 +222,15 @@ _data = {
 &"key_missed": SubResource("Animation_1r8yx")
 }
 
+[sub_resource type="Gradient" id="Gradient_3sdp5"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rrfmy"]
+gradient = SubResource("Gradient_3sdp5")
+width = 128
+height = 60
+
 [node name="StairsGame" type="Node2D" unique_id=121516237]
 script = ExtResource("1_74bqn")
 step_progress = Array[float]([0.0, 0.145, 0.285, 0.41, 0.52, 0.625, 0.715, 0.795, 0.87, 0.94, 1.0])
@@ -321,6 +331,41 @@ vertical_alignment = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="HUD/Control" unique_id=1670950615]
 libraries/ = SubResource("AnimationLibrary_1r8yx")
+
+[node name="TimeDisplay" type="Control" parent="HUD/Control" unique_id=567048901]
+anchors_preset = 0
+offset_left = 764.0
+offset_top = 324.0
+offset_right = 892.0
+offset_bottom = 384.0
+script = ExtResource("11_3g0py")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="HUD/Control/TimeDisplay" unique_id=1251566371]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+max_value = 1.0
+step = 0.01
+value = 1.0
+fill_mode = 6
+texture_progress = SubResource("GradientTexture2D_rrfmy")
+
+[node name="TimeLabel" type="Label" parent="HUD/Control/TimeDisplay" unique_id=42280836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_o2k14")
+theme_override_font_sizes/font_size = 32
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=638020365]
 layer = -1
