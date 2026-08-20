@@ -7,8 +7,14 @@ extends Path2D
 @onready var pf := $PathFollow2D
 @onready var sprite := $PathFollow2D/Ref/Sprite2D
 
+var enabled : bool = true:
+	set(new):
+		enabled = new
+		visible = new
+
 @export var progress_ratio : float = 0.0:
 	set(new):
+		if !enabled : return
 		progress_ratio = clamp(new, 0.0, 1.0)
 		pf.progress_ratio = progress_ratio
 		var s : float = scale_far * progress_ratio + scale_near * (1.0 - progress_ratio)

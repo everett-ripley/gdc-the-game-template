@@ -5,6 +5,11 @@ signal key_missed
 @onready var key_label := $Control/Key/KeyLabel
 @onready var anim := $Control/AnimationPlayer
 
+var enabled : bool = true:
+	set(new):
+		enabled = new
+		visible = new
+
 var key_array : Array[int] = [
 	KEY_W, KEY_A, KEY_S, KEY_D
 ]
@@ -26,6 +31,7 @@ func _ready():
 	next_key = key_array.pick_random()
 
 func _input(event):
+	if !enabled:return
 	if event is InputEventKey:
 		if event.pressed:
 			if event.keycode == next_key:

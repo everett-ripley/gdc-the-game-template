@@ -5,14 +5,95 @@
 [ext_resource type="Texture2D" uid="uid://cii16bliu607b" path="res://micro_games/stairs_game/key.png" id="2_5tai5"]
 [ext_resource type="Script" uid="uid://b7ga7mpbk3nup" path="res://micro_games/stairs_game/hud.gd" id="2_d2ay4"]
 [ext_resource type="Texture2D" uid="uid://11wdhd6ndqox" path="res://micro_games/stairs_game/background.png" id="2_fg7ih"]
+[ext_resource type="Texture2D" uid="uid://b1hlrs2nsmk3j" path="res://micro_games/stairs_game/guy-win.png" id="2_ps8qg"]
+[ext_resource type="Texture2D" uid="uid://dh2dng3wwykqp" path="res://micro_games/stairs_game/guy-FamilyGuyDeathPose.png" id="2_rudls"]
 [ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="3_o2k14"]
 [ext_resource type="Texture2D" uid="uid://cnito6v6bfjnk" path="res://micro_games/stairs_game/guy.png" id="3_rudls"]
+[ext_resource type="Texture2D" uid="uid://dfb31vmpabfm1" path="res://icon.svg" id="5_o30ad"]
+[ext_resource type="Shader" uid="uid://b18efo12q07tg" path="res://micro_games/stairs_game/gray_scale_shader.gdshader" id="5_we1sv"]
 
 [sub_resource type="Curve2D" id="Curve2D_o30ad"]
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 202, 439, 0, 0, 0, 0, 406, 199)
 }
 point_count = 2
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ps8qg"]
+resource_local_to_scene = true
+shader = ExtResource("5_we1sv")
+shader_parameter/brightness = 1.0
+
+[sub_resource type="Gradient" id="Gradient_we1sv"]
+colors = PackedColorArray(0, 0, 0, 0, 0, 0, 0, 0.75900006)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ps8qg"]
+gradient = SubResource("Gradient_we1sv")
+width = 384
+height = 192
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[sub_resource type="Animation" id="Animation_we1sv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/GrayScale:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_ps8qg"]
+resource_name = "death"
+length = 2.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/GrayScale:material:shader_parameter/brightness")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.01, 1, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3g0py"]
+_data = {
+&"RESET": SubResource("Animation_we1sv"),
+&"death": SubResource("Animation_ps8qg")
+}
 
 [sub_resource type="Animation" id="Animation_d2ay4"]
 length = 0.001
@@ -143,7 +224,15 @@ _data = {
 [node name="StairsGame" type="Node2D" unique_id=121516237]
 script = ExtResource("1_74bqn")
 step_progress = Array[float]([0.0, 0.145, 0.285, 0.41, 0.52, 0.625, 0.715, 0.795, 0.87, 0.94, 1.0])
+win_texture = ExtResource("2_ps8qg")
+lose_on_timeout = true
 game_duration = 10.0
+
+[node name="DeathSprite" type="Sprite2D" parent="." unique_id=1974584834]
+visible = false
+position = Vector2(233, 553)
+rotation = 1.5707964
+texture = ExtResource("2_rudls")
 
 [node name="ClimbPath" type="Path2D" parent="." unique_id=1666859649]
 curve = SubResource("Curve2D_o30ad")
@@ -158,6 +247,40 @@ loop = false
 
 [node name="Sprite2D" type="Sprite2D" parent="ClimbPath/PathFollow2D/Ref" unique_id=628206700]
 texture = ExtResource("3_rudls")
+
+[node name="ShaderOverlay" type="CanvasLayer" parent="." unique_id=121008956]
+layer = 3
+
+[node name="Control" type="Control" parent="ShaderOverlay" unique_id=127139244]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GrayScale" type="TextureRect" parent="ShaderOverlay/Control" unique_id=553524126]
+material = SubResource("ShaderMaterial_ps8qg")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_o30ad")
+
+[node name="TextureRect" type="TextureRect" parent="ShaderOverlay/Control" unique_id=1818530783]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_ps8qg")
+
+[node name="DeathAnim" type="AnimationPlayer" parent="ShaderOverlay" unique_id=653938347]
+libraries/ = SubResource("AnimationLibrary_3g0py")
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1858420495]
 layer = 2
@@ -220,4 +343,5 @@ grow_vertical = 2
 texture = ExtResource("2_fg7ih")
 expand_mode = 1
 
+[connection signal="lose" from="." to="." method="_on_lose"]
 [connection signal="key_hit" from="HUD" to="." method="_on_hud_key_hit"]
