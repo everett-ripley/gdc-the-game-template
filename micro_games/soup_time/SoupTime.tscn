@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cjv4k4sseerw0"]
+
+[ext_resource type="Script" uid="uid://p588vja7mpik" path="res://micro_games/soup_time/soup_time.gd" id="1_5g5ne"]
+[ext_resource type="Texture2D" uid="uid://otm068atdumr" path="res://micro_games/soup_time/BackgroundShore.png" id="2_5w3mg"]
+[ext_resource type="Texture2D" uid="uid://y6af8jhwyfyy" path="res://micro_games/soup_time/BackgroundLake.png" id="3_6j4f7"]
+[ext_resource type="Texture2D" uid="uid://nkr2upoc30x5" path="res://micro_games/soup_time/ForegroundLake.png" id="4_484sm"]
+
+[node name="SoupTime" type="Node2D" unique_id=1182290763]
+script = ExtResource("1_5g5ne")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1155556212]
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1839190166]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Control" unique_id=421250640]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_5w3mg")
+expand_mode = 1
+
+[node name="LakeBack" type="TextureRect" parent="CanvasLayer/Control" unique_id=1153145855]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6j4f7")
+expand_mode = 1
+
+[node name="LakeFront" type="TextureRect" parent="CanvasLayer/Control" unique_id=124073714]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_484sm")
+expand_mode = 1
