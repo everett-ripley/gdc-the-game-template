@@ -3,9 +3,12 @@
 [ext_resource type="Script" uid="uid://b2xawd1qdt77f" path="res://micro_games/garbage_sorting_game/garbage_sort_minigame.gd" id="1_4gs3s"]
 [ext_resource type="PackedScene" uid="uid://dc0s2ndqmhjg1" path="res://micro_games/garbage_sorting_game/GarbageScene.tscn" id="2_l6p54"]
 [ext_resource type="Script" uid="uid://f0pgeanqq2fy" path="res://micro_games/garbage_sorting_game/garbage_eater_class.gd" id="2_yrv08"]
+[ext_resource type="AudioStream" uid="uid://dxe12gx1pp2ys" path="res://micro_games/garbage_sorting_game/Sounds/throwaway1.mp3" id="3_01mji"]
 [ext_resource type="Texture2D" uid="uid://cgkuccce8f076" path="res://micro_games/garbage_sorting_game/Garbage/Bottles.png" id="3_lcmiv"]
+[ext_resource type="AudioStream" uid="uid://cr87th5gcbuaa" path="res://micro_games/garbage_sorting_game/Sounds/throwaway2.mp3" id="4_8xw3l"]
 [ext_resource type="Texture2D" uid="uid://cfn6gxj22xif3" path="res://micro_games/garbage_sorting_game/Garbage/Cans.png" id="4_cchbj"]
 [ext_resource type="Texture2D" uid="uid://c3cjnxqtmt3ce" path="res://micro_games/garbage_sorting_game/Garbage/Cartons.png" id="5_dwxhj"]
+[ext_resource type="AudioStream" uid="uid://wvxokjoc8r8h" path="res://micro_games/garbage_sorting_game/Sounds/throwaway3.mp3" id="5_vimo6"]
 [ext_resource type="Texture2D" uid="uid://bxl6ie2jrg7qu" path="res://micro_games/garbage_sorting_game/Garbage/Chips.png" id="6_eyv7d"]
 [ext_resource type="Texture2D" uid="uid://vkjpr6k8ind7" path="res://micro_games/garbage_sorting_game/Garbage/CompostableContainers.png" id="7_7w6cx"]
 [ext_resource type="Texture2D" uid="uid://q85ii5lbw4p5" path="res://micro_games/garbage_sorting_game/Garbage/FoodScrapsA.png" id="8_hdavo"]
@@ -29,6 +32,9 @@
 [ext_resource type="Script" uid="uid://bvcfollvjjtj" path="res://micro_games/garbage_sorting_game/timer_label.gd" id="26_btlko"]
 [ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="26_lxkte"]
 [ext_resource type="Script" uid="uid://onge6bh3coga" path="res://micro_games/garbage_sorting_game/lose.gd" id="27_lchmw"]
+[ext_resource type="AudioStream" uid="uid://xnv3ax6tuk81" path="res://micro_games/garbage_sorting_game/Sounds/confetti.mp3" id="32_uftlp"]
+[ext_resource type="AudioStream" uid="uid://bwvk30o0amd10" path="res://micro_games/garbage_sorting_game/Sounds/cornywin1.mp3" id="33_xalxi"]
+[ext_resource type="AudioStream" uid="uid://bm8qfbd7rnovv" path="res://micro_games/garbage_sorting_game/Sounds/lose.mp3" id="35_1y0l3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0hx4f"]
 shader = ExtResource("25_cwhi2")
@@ -163,6 +169,18 @@ script = ExtResource("2_yrv08")
 garbage_type = 0
 metadata/_custom_type_script = "uid://f0pgeanqq2fy"
 
+[node name="Throwaway1" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater" unique_id=797315578]
+stream = ExtResource("3_01mji")
+volume_db = 10.0
+
+[node name="Throwaway2" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater" unique_id=1189027626]
+stream = ExtResource("4_8xw3l")
+volume_db = 10.0
+
+[node name="Throwaway3" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater" unique_id=181399942]
+stream = ExtResource("5_vimo6")
+volume_db = 10.0
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater" unique_id=1664029714]
 polygon = PackedVector2Array(-24, -19, -61, 21, 27, 22, 55, -17)
 
@@ -175,6 +193,18 @@ metadata/_custom_type_script = "uid://f0pgeanqq2fy"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater2" unique_id=115815385]
 polygon = PackedVector2Array(-37, -22, -45, 19, 39, 23, 42, -19)
 
+[node name="Throwaway1" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater2" unique_id=1861073474]
+stream = ExtResource("3_01mji")
+volume_db = 10.0
+
+[node name="Throwaway2" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater2" unique_id=441567529]
+stream = ExtResource("4_8xw3l")
+volume_db = 10.0
+
+[node name="Throwaway3" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater2" unique_id=665329489]
+stream = ExtResource("5_vimo6")
+volume_db = 10.0
+
 [node name="GarbageEater3" type="Area2D" parent="GarbageBins" unique_id=151615289]
 position = Vector2(716, 326)
 script = ExtResource("2_yrv08")
@@ -184,6 +214,18 @@ metadata/_custom_type_script = "uid://f0pgeanqq2fy"
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater3" unique_id=287155800]
 polygon = PackedVector2Array(-47, -20, -31, 22, 51, 23, 35, -16)
 
+[node name="Throwaway1" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater3" unique_id=364789246]
+stream = ExtResource("3_01mji")
+volume_db = 10.0
+
+[node name="Throwaway2" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater3" unique_id=198444058]
+stream = ExtResource("4_8xw3l")
+volume_db = 10.0
+
+[node name="Throwaway3" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater3" unique_id=907910042]
+stream = ExtResource("5_vimo6")
+volume_db = 10.0
+
 [node name="GarbageEater4" type="Area2D" parent="GarbageBins" unique_id=1125794497]
 position = Vector2(915, 326)
 script = ExtResource("2_yrv08")
@@ -192,6 +234,18 @@ metadata/_custom_type_script = "uid://f0pgeanqq2fy"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="GarbageBins/GarbageEater4" unique_id=1631200532]
 polygon = PackedVector2Array(-59, -17, -29, 24, 54, 23, 14, -19)
+
+[node name="Throwaway1" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater4" unique_id=1601147095]
+stream = ExtResource("3_01mji")
+volume_db = 10.0
+
+[node name="Throwaway2" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater4" unique_id=2061587037]
+stream = ExtResource("4_8xw3l")
+volume_db = 10.0
+
+[node name="Throwaway3" type="AudioStreamPlayer2D" parent="GarbageBins/GarbageEater4" unique_id=1514163227]
+stream = ExtResource("5_vimo6")
+volume_db = 10.0
 
 [node name="Garbage" type="Node2D" parent="." unique_id=370735925]
 
@@ -464,6 +518,14 @@ one_shot = true
 explosiveness = 0.96
 process_material = SubResource("ParticleProcessMaterial_0hx4f")
 
+[node name="Confetti" type="AudioStreamPlayer" parent="EndScreenLayer/Win" unique_id=2029609259]
+stream = ExtResource("32_uftlp")
+volume_db = 5.0
+
+[node name="Cornywin1" type="AudioStreamPlayer" parent="EndScreenLayer/Win" unique_id=1881011238]
+stream = ExtResource("33_xalxi")
+volume_db = -5.0
+
 [node name="Lose" type="Control" parent="EndScreenLayer" unique_id=2019887702]
 visible = false
 layout_mode = 3
@@ -500,6 +562,9 @@ bbcode_enabled = true
 text = "[shake rate=20.0 level=15]"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="EndScreenLayer/Lose" unique_id=1327515670]
+stream = ExtResource("35_1y0l3")
 
 [node name="SpawnReference" type="Node2D" parent="." unique_id=150988259]
 position = Vector2(576, 324)

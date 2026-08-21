@@ -22,6 +22,10 @@ extends Area2D
 @onready var hand_open_png = preload("res://micro_games/garbage_sorting_game/HandOpen.png")
 @onready var hand_closed_png = preload("res://micro_games/garbage_sorting_game/HandClosed.png")
 @onready var glow_effect := $GlowEffect
+@onready var pickup_audio_array : Array[AudioStreamPlayer2D] = [
+	$PickupAudio/Pickup1, $PickupAudio/Pickup2, $PickupAudio/Pickup3
+]
+@onready var release_audio := $ReleaseAudio
 
 const throw_away_anim_time : float = 0.4
 const squish_factor : float = 0.7
@@ -47,6 +51,10 @@ var grab_state := grab_states.ungrabbed:
 				jiggle()
 				glow_effect.hide()
 				Input.set_custom_mouse_cursor(hand_closed_png, 0, Vector2(32, 32))
+				var a : AudioStreamPlayer2D = pickup_audio_array.pick_random()
+				a.pitch_scale = randf_range(0.9, 1.1)
+				a.playing = true
+
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -57,6 +65,7 @@ func _input(event):
 			print("Stop")
 			grab_state = grab_states.grabbable
 			Input.set_custom_mouse_cursor(hand_open_png, 0, Vector2(32, 32))
+			release_audio.playing = true
 			glow_effect.show()
 	if event is InputEventMouseMotion:
 		if grab_state == grab_states.grabbed:

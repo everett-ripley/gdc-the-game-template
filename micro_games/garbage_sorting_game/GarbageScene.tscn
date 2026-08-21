@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://dc0s2ndqmhjg1"]
 
 [ext_resource type="Script" uid="uid://d2qnde10hgjem" path="res://micro_games/garbage_sorting_game/garbage_class.gd" id="1_4qrd8"]
+[ext_resource type="AudioStream" uid="uid://cgm8vbo26dviy" path="res://micro_games/garbage_sorting_game/Sounds/pickup_1.mp3" id="2_2qj37"]
+[ext_resource type="AudioStream" uid="uid://fpqf6u73cdv5" path="res://micro_games/garbage_sorting_game/Sounds/pickup_2.mp3" id="3_l674a"]
+[ext_resource type="AudioStream" uid="uid://cs0dl52np4rue" path="res://micro_games/garbage_sorting_game/Sounds/pickup_3.mp3" id="4_kfhnv"]
+[ext_resource type="AudioStream" uid="uid://bv75k0amf4x4d" path="res://micro_games/garbage_sorting_game/Sounds/release.mp3" id="5_oslt6"]
 
 [sub_resource type="Gradient" id="Gradient_4qrd8"]
 offsets = PackedFloat32Array(0.9753846, 1)
@@ -187,6 +191,24 @@ speed_scale = 0.126
 [node name="Ref" type="Node2D" parent="." unique_id=132210862]
 
 [node name="Sprite2D" type="Sprite2D" parent="Ref" unique_id=288715269]
+
+[node name="PickupAudio" type="Node2D" parent="." unique_id=1285593593]
+
+[node name="Pickup1" type="AudioStreamPlayer2D" parent="PickupAudio" unique_id=915597423]
+stream = ExtResource("2_2qj37")
+volume_db = 10.0
+
+[node name="Pickup2" type="AudioStreamPlayer2D" parent="PickupAudio" unique_id=847450835]
+stream = ExtResource("3_l674a")
+volume_db = 10.0
+
+[node name="Pickup3" type="AudioStreamPlayer2D" parent="PickupAudio" unique_id=838102569]
+stream = ExtResource("4_kfhnv")
+volume_db = 10.0
+
+[node name="ReleaseAudio" type="AudioStreamPlayer2D" parent="." unique_id=29494462]
+stream = ExtResource("5_oslt6")
+volume_db = 10.0
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
