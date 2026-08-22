@@ -16,7 +16,7 @@
 [node name="SoupTime" type="Node2D" unique_id=1182290763]
 script = ExtResource("1_5g5ne")
 percent_per_press = 0.015
-audio_stop_time = 0.5
+audio_stop_time = 0.1
 control_format = 1
 lose_on_timeout = true
 game_duration = 10.0

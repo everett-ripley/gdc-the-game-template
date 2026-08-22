@@ -16,6 +16,10 @@ const END_Y : float = 158.0
 	set(new):
 		percent_per_press = clamp(new, 0.0, 1.0)
 
+@export var percent_per_second : float = 0.33:
+	set(new):
+		percent_per_second = clamp(new, 0, 1.0)
+
 @export var audio_stop_time : float = 0.25
 var audio_timer : float = 0.0
 var time_left : float = 10.0
@@ -58,18 +62,23 @@ func _ready():
 	straw_sound.stream_paused = true
 	pause_music.emit()
 
-func _input(event):
-	if has_lost or has_won:return
-	if event is InputEventKey:
-		if event.pressed and event.keycode == KEY_SPACE:
-			lake_pos += distance_per_press
-			is_drinking = true
-			audio_timer = 0.0
+#func _input(event):
+#	if has_lost or has_won:return
+#	if event is InputEventKey:
+#		if event.pressed and event.keycode == KEY_SPACE:
+#			lake_pos += distance_per_press
+#			is_drinking = true
+#			audio_timer = 0.0
 
 func _process(delta):
 	if !has_won and !has_lost:
 		time_left -= delta
 		time_label.text = str(int(ceil(time_left)))
+		
+		if Input.is_key_pressed(KEY_SPACE):
+			lake_pos += (END_Y - START_Y) * percent_per_second * delta
+			is_drinking = true
+			audio_timer = 0.0
 	
 	if audio_timer < audio_stop_time:
 		audio_timer += delta

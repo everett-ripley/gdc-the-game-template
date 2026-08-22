@@ -6,8 +6,9 @@
 [ext_resource type="Resource" uid="uid://dr8xa18yksevp" path="res://micro_games/soup_time/soup_time.tres" id="3_t7nkr"]
 [ext_resource type="Resource" uid="uid://dkk7e637xomiy" path="res://micro_games/garbage_sorting_game/garbage_sorting.tres" id="4_t7nkr"]
 [ext_resource type="Resource" uid="uid://c6hlsmdynnrk5" path="res://micro_games/stairs_game/stairs.tres" id="5_cnp12"]
+[ext_resource type="Resource" uid="uid://u63sj0cb0np6" path="res://micro_games/build_your_schedule/build_your_schedule.tres" id="6_cnp12"]
 
 [resource]
 script = ExtResource("3_5eyod")
-micro_games = Array[ExtResource("1_skbrk")]([ExtResource("2_skbrk"), ExtResource("3_t7nkr"), ExtResource("4_t7nkr"), ExtResource("5_cnp12")])
+micro_games = Array[ExtResource("1_skbrk")]([ExtResource("2_skbrk"), ExtResource("3_t7nkr"), ExtResource("4_t7nkr"), ExtResource("5_cnp12"), ExtResource("6_cnp12")])
 metadata/_custom_type_script = "uid://8d8dt0a71t3a"
