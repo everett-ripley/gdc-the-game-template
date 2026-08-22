@@ -1,0 +1,144 @@
+[gd_scene format=3 uid="uid://boaif6ghs4xgg"]
+
+[ext_resource type="Script" uid="uid://d6i4u5fuk323" path="res://micro_games/alarm_clock/alarm_clock.gd" id="1_hu8yb"]
+[ext_resource type="Texture2D" uid="uid://cds8eqw8rdl6a" path="res://micro_games/alarm_clock/cupboard.png" id="2_6k21f"]
+[ext_resource type="Texture2D" uid="uid://cdg00ayukas17" path="res://micro_games/alarm_clock/alarm_clock.png" id="3_thjtb"]
+[ext_resource type="Texture2D" uid="uid://c3tf6mbkulnv0" path="res://micro_games/alarm_clock/button.png" id="4_q8bp2"]
+[ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="5_thjtb"]
+
+[node name="AlarmClock" type="Node2D" unique_id=928554370]
+script = ExtResource("1_hu8yb")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1091887165]
+layer = -1
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=121757876]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Control" unique_id=36632854]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.23137255, 0.08627451, 0.28627452, 1)
+
+[node name="GameLayer" type="CanvasLayer" parent="." unique_id=73239491]
+
+[node name="Cupboard" type="Sprite2D" parent="GameLayer" unique_id=1405369288]
+texture_filter = 1
+position = Vector2(576, 393)
+scale = Vector2(4, 4)
+texture = ExtResource("2_6k21f")
+
+[node name="AlarmClockSprite" type="Sprite2D" parent="GameLayer" unique_id=329387606]
+texture_filter = 1
+position = Vector2(576, 329)
+scale = Vector2(4, 4)
+texture = ExtResource("3_thjtb")
+
+[node name="HourButton" type="Sprite2D" parent="GameLayer/AlarmClockSprite" unique_id=1513785233]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(-11, -24)
+texture = ExtResource("4_q8bp2")
+
+[node name="MinuteButton" type="Sprite2D" parent="GameLayer/AlarmClockSprite" unique_id=87150858]
+show_behind_parent = true
+texture_filter = 1
+position = Vector2(11, -24)
+texture = ExtResource("4_q8bp2")
+
+[node name="Control" type="Control" parent="GameLayer" unique_id=2009326961]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 497.0
+offset_top = 289.0
+offset_right = 656.0
+offset_bottom = 369.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameLayer/Control" unique_id=418039990]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HourLabel" type="Label" parent="GameLayer/Control/HBoxContainer" unique_id=1599151894]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_thjtb")
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="GameLayer/Control/HBoxContainer" unique_id=1777882025]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_thjtb")
+theme_override_font_sizes/font_size = 60
+text = ":"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinuteLabel" type="Label" parent="GameLayer/Control/HBoxContainer" unique_id=1232404382]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_thjtb")
+theme_override_font_sizes/font_size = 60
+text = "00"
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameLayer/Control" unique_id=297316822]
+modulate = Color(0.48700923, 0.48700923, 0.48700923, 0.72156864)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = -240.0
+offset_right = 0.5
+offset_bottom = -240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="HourLabel" type="Label" parent="GameLayer/Control/HBoxContainer2" unique_id=278183984]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_thjtb")
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="GameLayer/Control/HBoxContainer2" unique_id=1517020424]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_thjtb")
+theme_override_font_sizes/font_size = 60
+text = ":"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MinuteLabel" type="Label" parent="GameLayer/Control/HBoxContainer2" unique_id=29118101]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_thjtb")
+theme_override_font_sizes/font_size = 60
+text = "00"
+vertical_alignment = 1
