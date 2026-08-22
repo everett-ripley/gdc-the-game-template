@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MicroGameInfo" format=3 uid="uid://dkk7e637xomiy"]
+
+[ext_resource type="PackedScene" uid="uid://b81al3u8kdjxd" path="res://micro_games/garbage_sorting_game/GarbageSortMinigame.tscn" id="1_ppnou"]
+[ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="2_oaqg3"]
+
+[resource]
+script = ExtResource("2_oaqg3")
+title = "Garbage Sorting"
+authors = "Everett, Paul"
+description = "Drag garbage to the correct bin before time runs out."
+game_scene = ExtResource("1_ppnou")
+metadata/_custom_type_script = "uid://dciiueikp53p7"

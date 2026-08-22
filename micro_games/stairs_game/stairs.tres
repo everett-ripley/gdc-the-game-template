@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MicroGameInfo" format=3 uid="uid://c6hlsmdynnrk5"]
+
+[ext_resource type="PackedScene" uid="uid://cmfg2ghu2npna" path="res://micro_games/stairs_game/StairsGame.tscn" id="1_oxpal"]
+[ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="2_a3o4j"]
+
+[resource]
+script = ExtResource("2_a3o4j")
+title = "Stairs"
+authors = "Everett"
+description = "Use WASD to quickly climb stairs"
+game_scene = ExtResource("1_oxpal")
+metadata/_custom_type_script = "uid://dciiueikp53p7"

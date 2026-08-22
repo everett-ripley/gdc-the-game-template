@@ -351,6 +351,7 @@ step_progress = Array[float]([0.0, 0.145, 0.285, 0.41, 0.52, 0.625, 0.715, 0.795
 win_texture = ExtResource("2_ps8qg")
 control_format = 1
 lose_on_timeout = true
+timer_type = 0
 game_duration = 10.0
 
 [node name="StepSound" type="AudioStreamPlayer" parent="." unique_id=331527143]
