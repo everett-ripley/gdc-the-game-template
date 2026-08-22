@@ -7,11 +7,15 @@
 [ext_resource type="Texture2D" uid="uid://11wdhd6ndqox" path="res://micro_games/stairs_game/background.png" id="2_fg7ih"]
 [ext_resource type="Texture2D" uid="uid://b1hlrs2nsmk3j" path="res://micro_games/stairs_game/guy-win.png" id="2_ps8qg"]
 [ext_resource type="Texture2D" uid="uid://dh2dng3wwykqp" path="res://micro_games/stairs_game/guy-FamilyGuyDeathPose.png" id="2_rudls"]
+[ext_resource type="AudioStream" uid="uid://mb05hm62ocfh" path="res://micro_games/stairs_game/step_sound.wav" id="3_3sdp5"]
 [ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="3_o2k14"]
 [ext_resource type="Texture2D" uid="uid://cnito6v6bfjnk" path="res://micro_games/stairs_game/guy.png" id="3_rudls"]
+[ext_resource type="AudioStream" uid="uid://bqm3ohtldnimf" path="res://micro_games/stairs_game/error_sound.wav" id="4_a2dxp"]
 [ext_resource type="Texture2D" uid="uid://dfb31vmpabfm1" path="res://icon.svg" id="5_o30ad"]
+[ext_resource type="AudioStream" uid="uid://dicp6beqogsbl" path="res://micro_games/stairs_game/death_chord.wav" id="5_sl2o4"]
 [ext_resource type="Shader" uid="uid://b18efo12q07tg" path="res://micro_games/stairs_game/gray_scale_shader.gdshader" id="5_we1sv"]
 [ext_resource type="Script" uid="uid://c8h3y6f5r1w7c" path="res://micro_games/stairs_game/time_display.gd" id="11_3g0py"]
+[ext_resource type="AudioStream" uid="uid://dqtbsrhnva8xf" path="res://micro_games/stairs_game/Impact.wav" id="14_rrfmy"]
 
 [sub_resource type="Curve2D" id="Curve2D_o30ad"]
 _data = {
@@ -231,13 +235,136 @@ gradient = SubResource("Gradient_3sdp5")
 width = 128
 height = 60
 
+[sub_resource type="Animation" id="Animation_rrfmy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Shadow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(702, -279.00006)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Shadow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Impact:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_a2dxp"]
+resource_name = "win_anim"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/Shadow:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/Label:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.22, 0.26, 0.33, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(702, -279.00006), Vector2(551, 112), Vector2(601, 112), Vector2(521, 132), Vector2(561, 102), Vector2(521, 117), Vector2(551, 112)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/Shadow:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/Impact:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sl2o4"]
+_data = {
+&"RESET": SubResource("Animation_rrfmy"),
+&"win_anim": SubResource("Animation_a2dxp")
+}
+
 [node name="StairsGame" type="Node2D" unique_id=121516237]
 script = ExtResource("1_74bqn")
+pitch_end = 2.5
 step_progress = Array[float]([0.0, 0.145, 0.285, 0.41, 0.52, 0.625, 0.715, 0.795, 0.87, 0.94, 1.0])
 win_texture = ExtResource("2_ps8qg")
 control_format = 1
 lose_on_timeout = true
 game_duration = 10.0
+
+[node name="StepSound" type="AudioStreamPlayer" parent="." unique_id=331527143]
+stream = ExtResource("3_3sdp5")
+volume_db = -10.0
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="." unique_id=62171885]
+stream = ExtResource("4_a2dxp")
+volume_db = -2.5
+
+[node name="DeathChord" type="AudioStreamPlayer" parent="." unique_id=1090939081]
+stream = ExtResource("5_sl2o4")
+volume_db = -4.0
+pitch_scale = 0.8
 
 [node name="DeathSprite" type="Sprite2D" parent="." unique_id=1974584834]
 visible = false
@@ -389,5 +516,55 @@ grow_vertical = 2
 texture = ExtResource("2_fg7ih")
 expand_mode = 1
 
+[node name="WinScreen" type="CanvasLayer" parent="." unique_id=527134785]
+layer = 4
+visible = false
+
+[node name="Control" type="Control" parent="WinScreen" unique_id=1231488802]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Shadow" type="Label" parent="WinScreen/Control" unique_id=1845533969]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 551.0
+offset_top = 112.0
+offset_right = 945.0
+offset_bottom = 309.0
+rotation = 0.15509911
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_o2k14")
+theme_override_font_sizes/font_size = 64
+text = "STAIRS
+DEFEATED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="WinScreen/Control" unique_id=2089719024]
+layout_mode = 0
+offset_left = 702.0
+offset_top = -279.00006
+offset_right = 1096.0001
+offset_bottom = -82.00006
+rotation = 0.15509911
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_o2k14")
+theme_override_font_sizes/font_size = 64
+text = "STAIRS
+DEFEATED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Impact" type="AudioStreamPlayer" parent="WinScreen/Control" unique_id=1854600743]
+stream = ExtResource("14_rrfmy")
+
+[node name="WinAnim" type="AnimationPlayer" parent="WinScreen" unique_id=1408216205]
+libraries/ = SubResource("AnimationLibrary_sl2o4")
+
 [connection signal="lose" from="." to="." method="_on_lose"]
 [connection signal="key_hit" from="HUD" to="." method="_on_hud_key_hit"]
+[connection signal="key_missed" from="HUD" to="." method="_on_hud_key_missed"]
