@@ -8,17 +8,21 @@
 [ext_resource type="Texture2D" uid="uid://nkr2upoc30x5" path="res://micro_games/soup_time/ForegroundLake.png" id="4_484sm"]
 [ext_resource type="Texture2D" uid="uid://ctop0yc8qugtj" path="res://micro_games/soup_time/Ground.png" id="4_clsbe"]
 [ext_resource type="Texture2D" uid="uid://diffmhaewyphh" path="res://micro_games/soup_time/NearGround.png" id="5_r166x"]
+[ext_resource type="Texture2D" uid="uid://cd2htiri67wlw" path="res://micro_games/soup_time/straw_render.png" id="7_xylb8"]
+[ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="10_umelg"]
 
 [node name="SoupTime" type="Node2D" unique_id=1182290763]
 script = ExtResource("1_5g5ne")
-percent_per_press = 0.01
+percent_per_press = 0.015
 audio_stop_time = 0.5
 control_format = 1
 lose_on_timeout = true
 game_duration = 10.0
+start_paused = true
 
 [node name="Background" type="AudioStreamPlayer" parent="." unique_id=269473505]
 stream = ExtResource("2_484sm")
+volume_db = 7.0
 autoplay = true
 
 [node name="Straw" type="AudioStreamPlayer" parent="." unique_id=1773846131]
@@ -66,6 +70,17 @@ grow_vertical = 2
 texture = ExtResource("2_5w3mg")
 expand_mode = 1
 
+[node name="StrawImage" type="TextureRect" parent="CanvasLayer/Control" unique_id=1588882043]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_xylb8")
+expand_mode = 1
+
 [node name="LakePivot" type="Control" parent="CanvasLayer" unique_id=639207909]
 layout_mode = 3
 anchors_preset = 15
@@ -94,3 +109,45 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_484sm")
 expand_mode = 1
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=976528530]
+layer = 2
+
+[node name="Control" type="Control" parent="HUD" unique_id=28808420]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="HUD/Control" unique_id=1015935113]
+layout_mode = 0
+offset_left = 633.0
+offset_top = -19.000008
+offset_right = 1095.0
+offset_bottom = 108.99999
+rotation = 0.21031931
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("10_umelg")
+bbcode_enabled = true
+text = "[font_size=48]CONSUME THE SOUP
+[font_size=36]Press Space"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="HUD/Control" unique_id=1625450820]
+layout_mode = 0
+offset_left = 734.0
+offset_top = 187.99998
+offset_right = 1196.0
+offset_bottom = 316.0
+rotation = -0.2238234
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("10_umelg")
+theme_override_font_sizes/font_size = 96
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="lose" from="." to="." method="_on_lose"]

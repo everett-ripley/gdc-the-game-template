@@ -5,6 +5,10 @@ class_name MicroGame
 signal start
 signal win
 signal lose
+###
+signal pause_music
+signal resume_music
+###
 @warning_ignore_restore("unused_signal")
 
 
@@ -37,3 +41,6 @@ enum DefaultTimerType {
 
 @export_group("Loading")
 @export var always_reload : bool = true
+
+@export_group("Music")
+@export var start_paused : bool = false

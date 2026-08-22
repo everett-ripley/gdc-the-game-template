@@ -3,15 +3,26 @@
 [ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="1_skbrk"]
 [ext_resource type="Resource" uid="uid://b8ip6xtholvcp" path="res://micro_games/midnight_deadline/midnight_deadline.tres" id="2_skbrk"]
 [ext_resource type="Script" uid="uid://8d8dt0a71t3a" path="res://main/micro_game_pack.gd" id="3_5eyod"]
-[ext_resource type="Resource" uid="uid://dhd25aoiae4b6" path="res://micro_games/garbage_sorting_game/garbage_minigame.tres" id="3_rcab0"]
 [ext_resource type="PackedScene" uid="uid://cmfg2ghu2npna" path="res://micro_games/stairs_game/StairsGame.tscn" id="4_5eyod"]
+[ext_resource type="PackedScene" uid="uid://b81al3u8kdjxd" path="res://micro_games/garbage_sorting_game/GarbageSortMinigame.tscn" id="4_t7nkr"]
+[ext_resource type="PackedScene" uid="uid://cjv4k4sseerw0" path="res://micro_games/soup_time/SoupTime.tscn" id="5_t7nkr"]
 
-[sub_resource type="Resource" id="Resource_t7nkr"]
+[sub_resource type="Resource" id="Resource_cnp12"]
+script = ExtResource("1_skbrk")
+game_scene = ExtResource("5_t7nkr")
+metadata/_custom_type_script = "uid://dciiueikp53p7"
+
+[sub_resource type="Resource" id="Resource_toyrs"]
+script = ExtResource("1_skbrk")
+game_scene = ExtResource("4_t7nkr")
+metadata/_custom_type_script = "uid://dciiueikp53p7"
+
+[sub_resource type="Resource" id="Resource_0dmxh"]
 script = ExtResource("1_skbrk")
 game_scene = ExtResource("4_5eyod")
 metadata/_custom_type_script = "uid://dciiueikp53p7"
 
 [resource]
 script = ExtResource("3_5eyod")
-micro_games = Array[ExtResource("1_skbrk")]([ExtResource("2_skbrk"), ExtResource("3_rcab0"), SubResource("Resource_t7nkr")])
+micro_games = Array[ExtResource("1_skbrk")]([ExtResource("2_skbrk"), SubResource("Resource_cnp12"), SubResource("Resource_toyrs"), SubResource("Resource_0dmxh")])
 metadata/_custom_type_script = "uid://8d8dt0a71t3a"

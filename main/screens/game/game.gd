@@ -47,7 +47,15 @@ func _reset_cursor() -> void:
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 
-var current_game : MicroGame
+var current_game : MicroGame:
+	###
+	set(new):
+		current_game = new
+		if current_game != null:
+			current_game.connect("pause_music", pause_music)
+			current_game.connect("resume_music", resume_music)
+			music_player.stream_paused = current_game.start_paused
+	###
 var default_timer : MicroGameTimer
 
 var lives = 3
@@ -168,3 +176,12 @@ func play_next_game():
 	else:
 		setup_micro_game(micro_game, game_selector.current_game)
 		start_game()
+
+
+###
+func pause_music():
+	music_player.stream_paused = true
+
+func resume_music():
+	music_player.stream_paused = false
+###
