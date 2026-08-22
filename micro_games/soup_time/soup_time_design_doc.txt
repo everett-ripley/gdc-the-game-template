@@ -1,0 +1,8 @@
+Goal: Drink all of Columbia Lake
+
+Visual design:
+	Real image of the lake, with the water
+	moved to another layer.
+	Additional assets (straw, underwater section)
+	will be done with terrible pixel art
+	

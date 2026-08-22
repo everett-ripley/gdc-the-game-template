@@ -8,6 +8,9 @@ const END_Y : float = 158.0
 @onready var straw_sound := $Straw
 @onready var straw_image := $CanvasLayer/Control/StrawImage
 @onready var time_label := $HUD/Control/TimeLabel
+@onready var hud := $HUD
+@onready var lose_message := $CanvasLayer/LakePivot/LoseMessage
+@onready var win_message := $WinMessage
 
 @export var percent_per_press : float = 0.05:
 	set(new):
@@ -21,6 +24,10 @@ var has_won : bool = false:
 	set(new):
 		has_won = new
 		is_drinking = false
+		if has_won:
+			win_message.show()
+			hud.hide()
+			straw_image.hide()
 
 var has_lost : bool = false
 
@@ -52,6 +59,7 @@ func _ready():
 	pause_music.emit()
 
 func _input(event):
+	if has_lost or has_won:return
 	if event is InputEventKey:
 		if event.pressed and event.keycode == KEY_SPACE:
 			lake_pos += distance_per_press
@@ -71,4 +79,7 @@ func _process(delta):
 
 func _on_lose():
 	has_lost = true
-	resume_music.emit()
+	hud.hide()
+	straw_image.hide()
+	lose_message.show()
+	

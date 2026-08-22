@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://diffmhaewyphh" path="res://micro_games/soup_time/NearGround.png" id="5_r166x"]
 [ext_resource type="Texture2D" uid="uid://cd2htiri67wlw" path="res://micro_games/soup_time/straw_render.png" id="7_xylb8"]
 [ext_resource type="FontFile" uid="uid://k63t7wblivm1" path="res://shared/fonts/BoldsPixels.ttf" id="10_umelg"]
+[ext_resource type="Script" uid="uid://b66v3qovns8c5" path="res://micro_games/soup_time/shaking_node.gd" id="11_kos4b"]
+[ext_resource type="Texture2D" uid="uid://x5jx0trscipv" path="res://micro_games/soup_time/arrow.png" id="12_ycbsn"]
 
 [node name="SoupTime" type="Node2D" unique_id=1182290763]
 script = ExtResource("1_5g5ne")
@@ -110,6 +112,37 @@ grow_vertical = 2
 texture = ExtResource("4_484sm")
 expand_mode = 1
 
+[node name="LoseMessage" type="Control" parent="CanvasLayer/LakePivot" unique_id=1884025314]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="RichTextLabel" parent="CanvasLayer/LakePivot/LoseMessage" unique_id=1820960713]
+layout_mode = 0
+offset_left = 258.99997
+offset_top = 208.98938
+offset_right = 1111.5674
+offset_bottom = 316.95068
+rotation = -0.10221014
+theme_override_constants/outline_size = 8
+theme_override_fonts/normal_font = ExtResource("10_umelg")
+bbcode_enabled = true
+text = "[shake][font_size=60][center]Why didn't you finish the soup?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ShakingNode" type="Node2D" parent="CanvasLayer/LakePivot/LoseMessage" unique_id=558614490]
+position = Vector2(257, 361.9894)
+script = ExtResource("11_kos4b")
+shake_radius = 2.0
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/LakePivot/LoseMessage/ShakingNode" unique_id=1954946540]
+texture = ExtResource("12_ycbsn")
+
 [node name="HUD" type="CanvasLayer" parent="." unique_id=976528530]
 layer = 2
 
@@ -149,5 +182,29 @@ theme_override_font_sizes/font_size = 96
 text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="WinMessage" type="CanvasLayer" parent="." unique_id=2084182866]
+visible = false
+
+[node name="Control" type="Control" parent="WinMessage" unique_id=1106974769]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="WinMessage/Control" unique_id=1246510146]
+layout_mode = 0
+offset_left = 526.0
+offset_top = 567.0
+offset_right = 666.0
+offset_bottom = 603.0
+rotation = -0.093647696
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("10_umelg")
+theme_override_font_sizes/font_size = 40
+text = "souped :)"
+horizontal_alignment = 1
 
 [connection signal="lose" from="." to="." method="_on_lose"]
