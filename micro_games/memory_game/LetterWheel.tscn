@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://hifs335ga5sw"]
+
+[ext_resource type="Script" uid="uid://5a1cdbf87axi" path="res://micro_games/memory_game/letter_wheel.gd" id="1_pxm7d"]
+[ext_resource type="PackedScene" uid="uid://chu3xewr33e2g" path="res://micro_games/memory_game/SymbolA.tscn" id="2_mxg8m"]
+[ext_resource type="PackedScene" uid="uid://pa48kryjmwjw" path="res://micro_games/memory_game/SymbolB.tscn" id="3_f4j56"]
+[ext_resource type="PackedScene" uid="uid://b1ogjmnf0rj33" path="res://micro_games/memory_game/SymbolC.tscn" id="4_obe4u"]
+[ext_resource type="PackedScene" uid="uid://wbgu0der3tl5" path="res://micro_games/memory_game/SymbolD.tscn" id="5_e5un3"]
+
+[sub_resource type="Curve2D" id="Curve2D_vxk7x"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 0, -250, 0, 0, 0, 0, 0, 250)
+}
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_yigkb"]
+offsets = PackedFloat32Array(0.8, 0.9, 1)
+colors = PackedColorArray(0, 0, 0, 0.20392157, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6lma5"]
+gradient = SubResource("Gradient_yigkb")
+width = 120
+height = 120
+fill = 2
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(1, 0.5)
+
+[node name="LetterWheel" type="Path2D" unique_id=1839971513]
+curve = SubResource("Curve2D_vxk7x")
+script = ExtResource("1_pxm7d")
+
+[node name="FocusSquare" type="Sprite2D" parent="." unique_id=285351364]
+modulate = Color(1, 1, 1, 0.49803922)
+texture = SubResource("GradientTexture2D_6lma5")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="." unique_id=37081698]
+position = Vector2(0, -250)
+rotation = 1.5707964
+rotates = false
+cubic_interp = false
+
+[node name="SymbolA" parent="PathFollow2D" unique_id=2011577596 instance=ExtResource("2_mxg8m")]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="." unique_id=1297278181]
+modulate = Color(1, 1, 1, 0.49803922)
+position = Vector2(0, -125.00001)
+rotation = 1.5707964
+progress = 124.99999
+rotates = false
+cubic_interp = false
+
+[node name="SymbolB" parent="PathFollow2D2" unique_id=1086661718 instance=ExtResource("3_f4j56")]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="." unique_id=528734249]
+position = Vector2(0, -4.5776367e-05)
+rotation = 1.5707964
+progress = 249.99998
+rotates = false
+cubic_interp = false
+
+[node name="SymbolC" parent="PathFollow2D3" unique_id=1847967677 instance=ExtResource("4_obe4u")]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="." unique_id=816609852]
+modulate = Color(1, 1, 1, 0.49803922)
+position = Vector2(0, 124.99995)
+rotation = 1.5707964
+progress = 374.99997
+rotates = false
+cubic_interp = false
+
+[node name="SymbolD" parent="PathFollow2D4" unique_id=809279112 instance=ExtResource("5_e5un3")]

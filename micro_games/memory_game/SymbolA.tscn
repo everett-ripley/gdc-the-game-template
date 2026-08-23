@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://chu3xewr33e2g"]
+
+[node name="SymbolA" type="Node2D" unique_id=2011577596]
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1970850156]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(50, 50, 50, -50, -50, -50, -50, 50)
