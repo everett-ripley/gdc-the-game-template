@@ -4,11 +4,74 @@
 [ext_resource type="Theme" uid="uid://dxpj51pa8t0va" path="res://micro_games/memory_game/memory_label_theme.tres" id="2_hs2c7"]
 [ext_resource type="PackedScene" uid="uid://hifs335ga5sw" path="res://micro_games/memory_game/LetterWheel.tscn" id="3_dhru7"]
 [ext_resource type="Script" uid="uid://vosdmxm601dh" path="res://micro_games/memory_game/wheel_control.gd" id="3_vxk7x"]
+[ext_resource type="Script" uid="uid://bkjvm3p45akrd" path="res://micro_games/memory_game/pattern_display.gd" id="5_yigkb"]
+
+[sub_resource type="Animation" id="Animation_yigkb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PatternDisplay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 324)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PatternDisplay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6lma5"]
+resource_name = "reveal_pattern"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PatternDisplay:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(576, 547)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PatternDisplay:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_af7up"]
+_data = {
+&"RESET": SubResource("Animation_yigkb"),
+&"reveal_pattern": SubResource("Animation_6lma5")
+}
 
 [node name="MemoryGame" type="Node2D" unique_id=2001293322]
 script = ExtResource("1_56iab")
 control_format = 1
 game_duration = 10.0
+post_game_time = 3.0
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1354105828]
 layer = 0
@@ -134,18 +197,29 @@ position = Vector2(125, 0)
 position = Vector2(250, 0)
 
 [node name="PatternDisplay" type="Node2D" parent="Pattern" unique_id=1830598650]
-position = Vector2(576, 0)
+position = Vector2(576, 324)
+script = ExtResource("5_yigkb")
 
 [node name="Node2D" type="Node2D" parent="Pattern/PatternDisplay" unique_id=919745804]
 position = Vector2(-250, 0)
+rotation = 1.5707964
 
 [node name="Node2D2" type="Node2D" parent="Pattern/PatternDisplay" unique_id=2027714906]
 position = Vector2(-125, 0)
+rotation = 1.5707964
 
 [node name="Node2D3" type="Node2D" parent="Pattern/PatternDisplay" unique_id=628899533]
+rotation = 1.5707964
 
 [node name="Node2D4" type="Node2D" parent="Pattern/PatternDisplay" unique_id=914043552]
 position = Vector2(125, 0)
+rotation = 1.5707964
 
 [node name="Node2D5" type="Node2D" parent="Pattern/PatternDisplay" unique_id=690807931]
 position = Vector2(250, 0)
+rotation = 1.5707964
+
+[node name="PatternAnim" type="AnimationPlayer" parent="Pattern" unique_id=1006247326]
+libraries/ = SubResource("AnimationLibrary_af7up")
+
+[connection signal="lock_answer" from="Pattern/WheelControl" to="." method="_on_wheel_control_lock_answer"]

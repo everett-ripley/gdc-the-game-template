@@ -21,16 +21,19 @@ var index : int = 2:
 var is_scrolling : bool = false
 var is_selected : bool = false:
 	set(new):
+		if is_locked:return
 		is_selected = new
 		if is_selected:
-			focus_square.modulate.a = 1.0
+			focus_square.modulate = Color(1.0, 1.0, 0.0, 1.0)
 		else:
-			focus_square.modulate.a = 0.5
+			focus_square.modulate = Color(1,1,1,0.5)
+var is_locked : bool = false
 
 func _ready():
 	path_follows[0].modulate.a = 0.0
 
 func _input(event):
+	if is_locked:return
 	if !is_selected:return
 	if is_scrolling:return
 	if event is InputEventKey:
@@ -54,11 +57,6 @@ func scroll_wheel(old:int, new:int):
 			new_pr += 1.0
 		var distance : float = abs(new_pr - 0.5) * 2
 		t.parallel().tween_property(pf, "modulate", Color(1,1,1, 1 - distance), scroll_time)
-		
-		#if is_equal_approx(pf.progress_ratio + difference, 1.0) or is_equal_approx(pf.progress_ratio + difference, 0):
-		#	t.parallel().tween_property(pf, "modulate", Color(1,1,1,0), scroll_time)
-		#else:
-		#	t.parallel().tween_property(pf, "modulate", Color(1,1,1,1), scroll_time)
 		t.parallel().tween_property(pf, "progress_ratio", pf.progress_ratio + difference, scroll_time)
 	
 	await t.finished
@@ -68,3 +66,19 @@ func scroll_wheel(old:int, new:int):
 
 func get_character()->String:
 	return characters[index]
+
+func lock():
+	is_locked = true
+	var t := create_tween()
+	for i in range(0, 4):
+		if i != index:
+			t.parallel().tween_property(path_follows[i], "modulate", Color(1,1,1,0), 0.2)
+	focus_square.modulate = Color(1,1,1,1)
+
+func check_correctness(sym:String)->bool:
+	if sym == get_character():
+		focus_square.modulate = Color(0,1,0,1)
+		return true
+	else:
+		focus_square.modulate = Color(1,0,0,1)
+		return false
