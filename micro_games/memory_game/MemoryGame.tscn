@@ -2,8 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bm60dsv1viyo3" path="res://micro_games/memory_game/memory_game.gd" id="1_56iab"]
 [ext_resource type="Theme" uid="uid://dxpj51pa8t0va" path="res://micro_games/memory_game/memory_label_theme.tres" id="2_hs2c7"]
+[ext_resource type="Texture2D" uid="uid://rwc5hb3815dr" path="res://micro_games/memory_game/goosius_logo.png" id="3_af7up"]
 [ext_resource type="PackedScene" uid="uid://hifs335ga5sw" path="res://micro_games/memory_game/LetterWheel.tscn" id="3_dhru7"]
 [ext_resource type="Script" uid="uid://vosdmxm601dh" path="res://micro_games/memory_game/wheel_control.gd" id="3_vxk7x"]
+[ext_resource type="Texture2D" uid="uid://bhhbd15x645" path="res://micro_games/memory_game/house_icon.png" id="4_qf4s1"]
+[ext_resource type="Texture2D" uid="uid://lk2e7ssnyjc7" path="res://micro_games/memory_game/mobius_reference.jpg" id="4_sjbud"]
 [ext_resource type="Script" uid="uid://bkjvm3p45akrd" path="res://micro_games/memory_game/pattern_display.gd" id="5_yigkb"]
 
 [sub_resource type="Animation" id="Animation_yigkb"]
@@ -75,6 +78,7 @@ post_game_time = 3.0
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1354105828]
 layer = 0
+visible = false
 
 [node name="Control" type="Control" parent="Background" unique_id=1986726705]
 layout_mode = 3
@@ -94,6 +98,7 @@ grow_vertical = 2
 color = Color(0.92716885, 0.8140034, 0.9429472, 1)
 
 [node name="HUD" type="CanvasLayer" parent="." unique_id=1672486279]
+visible = false
 
 [node name="Control" type="Control" parent="HUD" unique_id=829335065]
 layout_mode = 3
@@ -131,7 +136,7 @@ THIS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TestLabel" type="Label" parent="HUD/Control/HBoxContainer/Instructions" unique_id=1335916801]
+[node name="TestLabel" type="RichTextLabel" parent="HUD/Control/HBoxContainer/Instructions" unique_id=514123753]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -140,9 +145,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_hs2c7")
-text = "RECALL
+bbcode_enabled = true
+text = "[center]RECALL
 THE
-PATTERN"
+PATTERN
+[font_size=20]
+Change Column
+A/D
+
+Change Symbol
+W/S"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -176,7 +188,193 @@ text = "10"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="GoosiusLayout" type="CanvasLayer" parent="." unique_id=876246997]
+
+[node name="Control" type="Control" parent="GoosiusLayout" unique_id=1234045396]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="GoosiusLayout/Control" unique_id=223577465]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VerticalElementContainer" type="VBoxContainer" parent="GoosiusLayout/Control" unique_id=1075395088]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopSpacer" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=1994622590]
+custom_minimum_size = Vector2(0, 3.475)
+layout_mode = 2
+
+[node name="LogoContainer" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=449023105]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/LogoContainer" unique_id=299181847]
+custom_minimum_size = Vector2(61.73, 0)
+layout_mode = 2
+
+[node name="GoosiusLogo" type="TextureRect" parent="GoosiusLayout/Control/VerticalElementContainer/LogoContainer" unique_id=1983147930]
+custom_minimum_size = Vector2(114.563, 48.831)
+layout_mode = 2
+texture = ExtResource("3_af7up")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=965996847]
+custom_minimum_size = Vector2(0, 3.31)
+layout_mode = 2
+color = Color(0.050980393, 0.30588236, 0.3647059, 1)
+
+[node name="Spacer" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=2025155953]
+custom_minimum_size = Vector2(0, 4.12)
+layout_mode = 2
+
+[node name="FilePathContaner" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=267218576]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=968776568]
+custom_minimum_size = Vector2(62.21, 0)
+layout_mode = 2
+
+[node name="HomeIcon" type="TextureRect" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=856851260]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2
+texture = ExtResource("4_qf4s1")
+expand_mode = 1
+
+[node name="Slash" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=903912780]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8117647, 0.8156863, 1)
+theme_override_font_sizes/font_size = 9
+text = "  /  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Course" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=1342738649]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.09411765, 0.3137255, 0.38039216, 1)
+theme_override_font_sizes/font_size = 9
+text = "Game Dev Club: The Games"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slash2" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=1507941751]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8117647, 0.8156863, 1)
+theme_override_font_sizes/font_size = 9
+text = "  /  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Section" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=2012269125]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.09411765, 0.3137255, 0.38039216, 1)
+theme_override_font_sizes/font_size = 9
+text = "Assignments"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Slash3" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=1417307982]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8117647, 0.8156863, 1)
+theme_override_font_sizes/font_size = 9
+text = "  /  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FilePathGameName" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/FilePathContaner" unique_id=1548990804]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.49019608, 0.49019608, 0.49019608, 1)
+theme_override_font_sizes/font_size = 9
+text = "Recall Game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer2" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=2026439162]
+custom_minimum_size = Vector2(0, 4.12)
+layout_mode = 2
+
+[node name="ColorRect2" type="ColorRect" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=1994123332]
+custom_minimum_size = Vector2(0, 1.2)
+layout_mode = 2
+color = Color(0.6872146, 0.68721515, 0.6872146, 1)
+
+[node name="TimerContainer" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=1090868758]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=1713653661]
+custom_minimum_size = Vector2(56.805, 0)
+layout_mode = 2
+
+[node name="GameLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=83087906]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.22156113, 0.22661927, 0.20134977, 1)
+text = "Recall Game"
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=253780732]
+custom_minimum_size = Vector2(700, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=970179164]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
+theme_override_font_sizes/font_size = 12
+text = "Remaining Time:  "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=990363700]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
+theme_override_font_sizes/font_size = 12
+text = "00 : 00 : "
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TimeLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=995509097]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.31431612, 0.31431612, 0.31431603, 1)
+theme_override_font_sizes/font_size = 12
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect3" type="ColorRect" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=703361947]
+custom_minimum_size = Vector2(0, 1.2)
+layout_mode = 2
+color = Color(0.6872146, 0.68721515, 0.6872146, 1)
+
+[node name="REFERENCE_DELETE" type="TextureRect" parent="GoosiusLayout/Control" unique_id=1034314673]
+visible = false
+modulate = Color(1, 1, 1, 0.24100001)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.105, 1.105)
+pivot_offset = Vector2(576, 324)
+texture = ExtResource("4_sjbud")
+expand_mode = 1
+
 [node name="Pattern" type="CanvasLayer" parent="." unique_id=1663173090]
+visible = false
 
 [node name="WheelControl" type="Node2D" parent="Pattern" unique_id=777590755]
 position = Vector2(576, 324)
