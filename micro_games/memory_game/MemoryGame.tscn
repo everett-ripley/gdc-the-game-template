@@ -10,6 +10,35 @@
 [ext_resource type="Theme" uid="uid://0eedfx2ylk8p" path="res://micro_games/memory_game/goosius_theme.tres" id="5_qf4s1"]
 [ext_resource type="Script" uid="uid://bkjvm3p45akrd" path="res://micro_games/memory_game/pattern_display.gd" id="5_yigkb"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf4s1"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.9254902, 0.9254902, 0.9254902, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqnst"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 1, 1, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [sub_resource type="Animation" id="Animation_yigkb"]
 length = 0.001
 tracks/0/type = "value"
@@ -403,9 +432,58 @@ custom_minimum_size = Vector2(1.2, 500)
 layout_mode = 2
 color = Color(0.6862745, 0.6862745, 0.6862745, 1)
 
+[node name="ReferenceRect" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer" unique_id=1689130114]
+custom_minimum_size = Vector2(36.7, 0)
+layout_mode = 2
+
 [node name="PuzzleContainer" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer" unique_id=113597358]
 layout_mode = 2
 size_flags_horizontal = 3
+
+[node name="InstructionsLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=291412347]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 776.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.4627451, 0.47058824, 0.45490196, 1)
+theme_override_font_sizes/font_size = 14
+text = "What was the pattern you were asked to remember?"
+
+[node name="PanelContainer" type="PanelContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=658489328]
+layout_mode = 0
+offset_top = 131.0
+offset_right = 475.0
+offset_bottom = 361.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_qf4s1")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer" unique_id=62895517]
+layout_mode = 2
+alignment = 1
+
+[node name="ControlsLabel" type="RichTextLabel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer" unique_id=751903358]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.116857864, 0.119915836, 0.11379329, 1)
+bbcode_enabled = true
+text = "
+  Change Column: A/D      Change Symbol: W/S"
+
+[node name="Control" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer" unique_id=1546485371]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control" unique_id=1950659532]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 0.0107040405
+offset_bottom = -2.1307068
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.99, 0.99)
+pivot_offset_ratio = Vector2(0.5, 0.5)
+theme_override_styles/panel = SubResource("StyleBoxFlat_oqnst")
 
 [node name="Control" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=1257836206]
 layout_mode = 2
