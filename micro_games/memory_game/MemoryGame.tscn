@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://vosdmxm601dh" path="res://micro_games/memory_game/wheel_control.gd" id="3_vxk7x"]
 [ext_resource type="Texture2D" uid="uid://bhhbd15x645" path="res://micro_games/memory_game/house_icon.png" id="4_qf4s1"]
 [ext_resource type="Texture2D" uid="uid://lk2e7ssnyjc7" path="res://micro_games/memory_game/mobius_reference.jpg" id="4_sjbud"]
+[ext_resource type="Theme" uid="uid://0eedfx2ylk8p" path="res://micro_games/memory_game/goosius_theme.tres" id="5_qf4s1"]
 [ext_resource type="Script" uid="uid://bkjvm3p45akrd" path="res://micro_games/memory_game/pattern_display.gd" id="5_yigkb"]
 
 [sub_resource type="Animation" id="Animation_yigkb"]
@@ -358,6 +359,90 @@ vertical_alignment = 1
 custom_minimum_size = Vector2(0, 1.2)
 layout_mode = 2
 color = Color(0.6872146, 0.68721515, 0.6872146, 1)
+
+[node name="MainGameContainer" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=1022529923]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="QuestionNumberContainer" type="VBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer" unique_id=635808521]
+custom_minimum_size = Vector2(310, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/QuestionNumberContainer" unique_id=1393254975]
+custom_minimum_size = Vector2(0, 16.63)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/QuestionNumberContainer" unique_id=151669091]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/QuestionNumberContainer/HBoxContainer" unique_id=883230093]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3882353, 0.39215687, 0.40784314, 1)
+text = "               - Question "
+
+[node name="QuestionNumberLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/QuestionNumberContainer/HBoxContainer" unique_id=1333508336]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.3882353, 0.39215687, 0.40784314, 1)
+text = "1"
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/QuestionNumberContainer" unique_id=1049511681]
+custom_minimum_size = Vector2(0, 19.21)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/QuestionNumberContainer" unique_id=1644958345]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.46183014, 0.46956205, 0.45407432, 1)
+theme_override_font_sizes/font_size = 10
+text = "                      1 point"
+
+[node name="ColorRect" type="ColorRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer" unique_id=2016142894]
+custom_minimum_size = Vector2(1.2, 500)
+layout_mode = 2
+color = Color(0.6862745, 0.6862745, 0.6862745, 1)
+
+[node name="PuzzleContainer" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer" unique_id=113597358]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Control" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=1257836206]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="GoosiusLayout/Control/VerticalElementContainer/Control" unique_id=260096704]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.95686275, 0.95686275, 0.95686275, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/Control" unique_id=797472559]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/Control/HBoxContainer" unique_id=1980039243]
+custom_minimum_size = Vector2(188.76, 0)
+layout_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="GoosiusLayout/Control/VerticalElementContainer/Control/HBoxContainer/ReferenceRect" unique_id=1513084628]
+layout_mode = 0
+offset_top = 9.0
+offset_right = 158.0
+offset_bottom = 40.0
+
+[node name="SubmitAssignmentButton" type="Button" parent="GoosiusLayout/Control/VerticalElementContainer/Control/HBoxContainer/ReferenceRect/CenterContainer" unique_id=505840113]
+layout_mode = 2
+theme = ExtResource("5_qf4s1")
+text = "Submit Assignment"
 
 [node name="REFERENCE_DELETE" type="TextureRect" parent="GoosiusLayout/Control" unique_id=1034314673]
 visible = false
