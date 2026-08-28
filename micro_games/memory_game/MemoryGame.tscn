@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://lk2e7ssnyjc7" path="res://micro_games/memory_game/mobius_reference.jpg" id="4_sjbud"]
 [ext_resource type="Theme" uid="uid://0eedfx2ylk8p" path="res://micro_games/memory_game/goosius_theme.tres" id="5_qf4s1"]
 [ext_resource type="Script" uid="uid://bkjvm3p45akrd" path="res://micro_games/memory_game/pattern_display.gd" id="5_yigkb"]
+[ext_resource type="Texture2D" uid="uid://0bktss2tj5qk" path="res://micro_games/memory_game/correct_answer_icon.png" id="8_r5x3t"]
+[ext_resource type="Texture2D" uid="uid://bn1hkv4uhdfkl" path="res://micro_games/memory_game/incorrect_answer_icon.png" id="9_l5ds3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf4s1"]
 content_margin_left = 0.0
@@ -37,6 +39,45 @@ corner_radius_top_left = 3
 corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r5x3t"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.8001019, 0.8001019, 0.8001019, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_blend = true
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ds3"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.8001019, 0.8001019, 0.8001019, 0)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_blend = true
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85ted"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.8001019, 0.8001019, 0.8001019, 0)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_blend = true
 corner_detail = 5
 
 [sub_resource type="Animation" id="Animation_yigkb"]
@@ -102,7 +143,6 @@ _data = {
 
 [node name="MemoryGame" type="Node2D" unique_id=2001293322]
 script = ExtResource("1_56iab")
-control_format = 1
 game_duration = 10.0
 post_game_time = 3.0
 
@@ -298,7 +338,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.09411765, 0.3137255, 0.38039216, 1)
 theme_override_font_sizes/font_size = 9
-text = "Game Dev Club: The Games"
+text = "Game Dev Club: The Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -485,6 +525,231 @@ scale = Vector2(0.99, 0.99)
 pivot_offset_ratio = Vector2(0.5, 0.5)
 theme_override_styles/panel = SubResource("StyleBoxFlat_oqnst")
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel" unique_id=1102051661]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.6414032
+offset_top = 2.1414185
+offset_right = -1.5050049
+offset_bottom = -2.0202026
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer" unique_id=1077305012]
+transparent_bg = true
+handle_input_locally = false
+audio_listener_enable_2d = true
+size = Vector2i(471, 170)
+render_target_update_mode = 4
+
+[node name="Node2D" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport" unique_id=528471553]
+
+[node name="WheelControl" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1697998316]
+position = Vector2(235.5, 85)
+scale = Vector2(0.45, 0.45)
+script = ExtResource("3_vxk7x")
+
+[node name="LetterWheel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D/WheelControl" unique_id=1839971513 instance=ExtResource("3_dhru7")]
+position = Vector2(-350, 0)
+
+[node name="LetterWheel2" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D/WheelControl" unique_id=1190650110 instance=ExtResource("3_dhru7")]
+position = Vector2(-175, 0)
+
+[node name="LetterWheel3" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D/WheelControl" unique_id=192359359 instance=ExtResource("3_dhru7")]
+
+[node name="LetterWheel4" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D/WheelControl" unique_id=1352573779 instance=ExtResource("3_dhru7")]
+position = Vector2(175, 0)
+
+[node name="LetterWheel5" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D/WheelControl" unique_id=885809715 instance=ExtResource("3_dhru7")]
+position = Vector2(350, 0)
+
+[node name="AnswerDisplay" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=1685594213]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 365.0
+offset_right = -330.0
+offset_bottom = -51.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay" unique_id=778836320]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer" unique_id=556980129]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="Panel" type="Panel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer" unique_id=783184573]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_r5x3t")
+
+[node name="Label" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer/Panel" unique_id=944308739]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4509804, 0.4509804, 0.4509804, 1)
+theme_override_font_sizes/font_size = 12
+text = "Your response"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Panel2" type="Panel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer" unique_id=77622640]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_r5x3t")
+
+[node name="Label" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer/Panel2" unique_id=868146963]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.4509804, 0.4509804, 0.4509804, 1)
+theme_override_font_sizes/font_size = 12
+text = "Correct response"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer" unique_id=1582693259]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ResponsePanel" type="Panel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2" unique_id=160303136]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_l5ds3")
+
+[node name="ResponsePatternDisplay" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/ResponsePanel" unique_id=60679730]
+position = Vector2(118.5, 20)
+scale = Vector2(0.35, 0.35)
+script = ExtResource("5_yigkb")
+
+[node name="Node2D" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/ResponsePanel/ResponsePatternDisplay" unique_id=733653952]
+position = Vector2(-250, 0)
+rotation = 1.5707964
+
+[node name="Node2D2" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/ResponsePanel/ResponsePatternDisplay" unique_id=2010780071]
+position = Vector2(-125, 0)
+rotation = 1.5707964
+
+[node name="Node2D3" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/ResponsePanel/ResponsePatternDisplay" unique_id=138331112]
+rotation = 1.5707964
+
+[node name="Node2D4" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/ResponsePanel/ResponsePatternDisplay" unique_id=373483698]
+position = Vector2(125, 0)
+rotation = 1.5707964
+
+[node name="Node2D5" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/ResponsePanel/ResponsePatternDisplay" unique_id=1932416713]
+position = Vector2(250, 0)
+rotation = 1.5707964
+
+[node name="CorrectPanel" type="Panel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2" unique_id=1680181422]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_85ted")
+
+[node name="CorrectPatternDisplay" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/CorrectPanel" unique_id=1351862845]
+position = Vector2(118.5, 20)
+scale = Vector2(0.35, 0.35)
+script = ExtResource("5_yigkb")
+
+[node name="Node2D" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/CorrectPanel/CorrectPatternDisplay" unique_id=1022131393]
+position = Vector2(-250, 0)
+rotation = 1.5707964
+
+[node name="Node2D2" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/CorrectPanel/CorrectPatternDisplay" unique_id=2051231414]
+position = Vector2(-125, 0)
+rotation = 1.5707964
+
+[node name="Node2D3" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/CorrectPanel/CorrectPatternDisplay" unique_id=847309824]
+rotation = 1.5707964
+
+[node name="Node2D4" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/CorrectPanel/CorrectPatternDisplay" unique_id=947986348]
+position = Vector2(125, 0)
+rotation = 1.5707964
+
+[node name="Node2D5" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/CorrectPanel/CorrectPatternDisplay" unique_id=1220501558]
+position = Vector2(250, 0)
+rotation = 1.5707964
+
+[node name="Spacer" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer" unique_id=1589456615]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer" unique_id=1038609379]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="ReferenceRect" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3" unique_id=536428304]
+custom_minimum_size = Vector2(13.425, 0)
+layout_mode = 2
+
+[node name="TextureContainer" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3" unique_id=562138299]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="CorrectTexture" type="TextureRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3/TextureContainer" unique_id=459748826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("8_r5x3t")
+expand_mode = 1
+
+[node name="IncorrectTexture" type="TextureRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3/TextureContainer" unique_id=1377991067]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("9_l5ds3")
+expand_mode = 1
+
+[node name="ReferenceRect2" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3" unique_id=1405086108]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3" unique_id=1548391881]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4509804, 0.4509804, 0.5254902, 1)
+theme_override_font_sizes/font_size = 10
+text = "Grade: "
+
+[node name="ScoreLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3" unique_id=952367465]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4509804, 0.4509804, 0.5254902, 1)
+theme_override_font_sizes/font_size = 10
+text = "0"
+
+[node name="Label2" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer3" unique_id=302232682]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.4509804, 0.4509804, 0.5254902, 1)
+theme_override_font_sizes/font_size = 10
+text = "/1."
+
 [node name="Control" type="Control" parent="GoosiusLayout/Control/VerticalElementContainer" unique_id=1257836206]
 layout_mode = 2
 size_flags_vertical = 3
@@ -543,7 +808,7 @@ visible = false
 position = Vector2(576, 324)
 script = ExtResource("3_vxk7x")
 
-[node name="LetterWheel" parent="Pattern/WheelControl" unique_id=1839971513 instance=ExtResource("3_dhru7")]
+[node name="LetterWheel" parent="Pattern/WheelControl" unique_id=1468469002 instance=ExtResource("3_dhru7")]
 position = Vector2(-250, 0)
 
 [node name="LetterWheel2" parent="Pattern/WheelControl" unique_id=451517651 instance=ExtResource("3_dhru7")]
