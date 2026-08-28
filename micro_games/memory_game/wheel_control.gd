@@ -33,9 +33,9 @@ func _input(event):
 	if disabled == true:return
 	if event is InputEventKey:
 		if event.pressed:
-			if event.keycode == KEY_SPACE:
-				confirm_pattern()
-			elif !can_change_selection:return
+			#if event.keycode == KEY_SPACE:
+			#	confirm_pattern()
+			if !can_change_selection:return
 			elif event.keycode == KEY_A:
 				index -= 1
 			elif event.keycode == KEY_D:

@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bm60dsv1viyo3" path="res://micro_games/memory_game/memory_game.gd" id="1_56iab"]
 [ext_resource type="Theme" uid="uid://dxpj51pa8t0va" path="res://micro_games/memory_game/memory_label_theme.tres" id="2_hs2c7"]
+[ext_resource type="StyleBox" uid="uid://dfjp4xda5ubrb" path="res://micro_games/memory_game/correct_answer.tres" id="2_wc13k"]
 [ext_resource type="Texture2D" uid="uid://rwc5hb3815dr" path="res://micro_games/memory_game/goosius_logo.png" id="3_af7up"]
 [ext_resource type="PackedScene" uid="uid://hifs335ga5sw" path="res://micro_games/memory_game/LetterWheel.tscn" id="3_dhru7"]
 [ext_resource type="Script" uid="uid://vosdmxm601dh" path="res://micro_games/memory_game/wheel_control.gd" id="3_vxk7x"]
@@ -9,8 +10,119 @@
 [ext_resource type="Texture2D" uid="uid://lk2e7ssnyjc7" path="res://micro_games/memory_game/mobius_reference.jpg" id="4_sjbud"]
 [ext_resource type="Theme" uid="uid://0eedfx2ylk8p" path="res://micro_games/memory_game/goosius_theme.tres" id="5_qf4s1"]
 [ext_resource type="Script" uid="uid://bkjvm3p45akrd" path="res://micro_games/memory_game/pattern_display.gd" id="5_yigkb"]
+[ext_resource type="StyleBox" uid="uid://byqbcjqfx66qs" path="res://micro_games/memory_game/incorrect_answer.tres" id="7_l5ds3"]
 [ext_resource type="Texture2D" uid="uid://0bktss2tj5qk" path="res://micro_games/memory_game/correct_answer_icon.png" id="8_r5x3t"]
+[ext_resource type="StyleBox" uid="uid://3vicldl16pud" path="res://micro_games/memory_game/neutral_answer.tres" id="9_l4rre"]
 [ext_resource type="Texture2D" uid="uid://bn1hkv4uhdfkl" path="res://micro_games/memory_game/incorrect_answer_icon.png" id="9_l5ds3"]
+
+[sub_resource type="Animation" id="Animation_wc13k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnswerDisplay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnswerDisplay:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnswerDisplay:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 365)]
+}
+
+[sub_resource type="Animation" id="Animation_l4rre"]
+resource_name = "end_game"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PanelContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnswerDisplay:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnswerDisplay:modulate")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnswerDisplay:position")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 365), Vector2(0, 165)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a114m"]
+_data = {
+&"RESET": SubResource("Animation_wc13k"),
+&"end_game": SubResource("Animation_l4rre")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qf4s1"]
 content_margin_left = 0.0
@@ -54,19 +166,6 @@ border_width_bottom = 2
 border_blend = true
 corner_detail = 5
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l5ds3"]
-content_margin_left = 0.0
-content_margin_top = 0.0
-content_margin_right = 0.0
-content_margin_bottom = 0.0
-bg_color = Color(0.8001019, 0.8001019, 0.8001019, 0)
-border_width_left = 8
-border_width_top = 8
-border_width_right = 8
-border_width_bottom = 8
-border_blend = true
-corner_detail = 5
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_85ted"]
 content_margin_left = 0.0
 content_margin_top = 0.0
@@ -80,71 +179,12 @@ border_width_bottom = 8
 border_blend = true
 corner_detail = 5
 
-[sub_resource type="Animation" id="Animation_yigkb"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PatternDisplay:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(576, 324)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PatternDisplay:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_6lma5"]
-resource_name = "reveal_pattern"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PatternDisplay:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(576, 547)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PatternDisplay:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_af7up"]
-_data = {
-&"RESET": SubResource("Animation_yigkb"),
-&"reveal_pattern": SubResource("Animation_6lma5")
-}
-
 [node name="MemoryGame" type="Node2D" unique_id=2001293322]
 script = ExtResource("1_56iab")
+correct_panel_style = ExtResource("2_wc13k")
+incorrect_panel_style = ExtResource("7_l5ds3")
 game_duration = 10.0
-post_game_time = 3.0
+post_game_time = 4.0
 
 [node name="Background" type="CanvasLayer" parent="." unique_id=1354105828]
 layer = 0
@@ -480,7 +520,34 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="InstructionsLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=291412347]
+[node name="EndGameAnim" type="AnimationPlayer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=1830171665]
+libraries/ = SubResource("AnimationLibrary_a114m")
+
+[node name="PatternDisplay" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=1164793775]
+position = Vector2(177, 102)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("5_yigkb")
+
+[node name="Node2D" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PatternDisplay" unique_id=485180644]
+position = Vector2(-250, 0)
+rotation = 1.5707964
+
+[node name="Node2D2" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PatternDisplay" unique_id=1419187998]
+position = Vector2(-125, 0)
+rotation = 1.5707964
+
+[node name="Node2D3" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PatternDisplay" unique_id=1770774772]
+rotation = 1.5707964
+
+[node name="Node2D4" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PatternDisplay" unique_id=903811552]
+position = Vector2(125, 0)
+rotation = 1.5707964
+
+[node name="Node2D5" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PatternDisplay" unique_id=540510516]
+position = Vector2(250, 0)
+rotation = 1.5707964
+
+[node name="QuestionLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=291412347]
 layout_mode = 0
 offset_top = 17.0
 offset_right = 776.0
@@ -488,6 +555,15 @@ offset_bottom = 94.0
 theme_override_colors/font_color = Color(0.4627451, 0.47058824, 0.45490196, 1)
 theme_override_font_sizes/font_size = 14
 text = "What was the pattern you were asked to remember?"
+
+[node name="InstructionsLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=1030043909]
+layout_mode = 0
+offset_top = 17.0
+offset_right = 776.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(0.4627451, 0.47058824, 0.45490196, 1)
+theme_override_font_sizes/font_size = 14
+text = "Remember this pattern."
 
 [node name="PanelContainer" type="PanelContainer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer" unique_id=658489328]
 layout_mode = 0
@@ -636,7 +712,7 @@ alignment = 1
 [node name="ResponsePanel" type="Panel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2" unique_id=160303136]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_styles/panel = SubResource("StyleBoxFlat_l5ds3")
+theme_override_styles/panel = ExtResource("9_l4rre")
 
 [node name="ResponsePatternDisplay" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/AnswerDisplay/VBoxContainer/HBoxContainer2/ResponsePanel" unique_id=60679730]
 position = Vector2(118.5, 20)
@@ -801,51 +877,7 @@ pivot_offset = Vector2(576, 324)
 texture = ExtResource("4_sjbud")
 expand_mode = 1
 
-[node name="Pattern" type="CanvasLayer" parent="." unique_id=1663173090]
-visible = false
-
-[node name="WheelControl" type="Node2D" parent="Pattern" unique_id=777590755]
-position = Vector2(576, 324)
-script = ExtResource("3_vxk7x")
-
-[node name="LetterWheel" parent="Pattern/WheelControl" unique_id=1468469002 instance=ExtResource("3_dhru7")]
-position = Vector2(-250, 0)
-
-[node name="LetterWheel2" parent="Pattern/WheelControl" unique_id=451517651 instance=ExtResource("3_dhru7")]
-position = Vector2(-125, 0)
-
-[node name="LetterWheel3" parent="Pattern/WheelControl" unique_id=903046396 instance=ExtResource("3_dhru7")]
-
-[node name="LetterWheel4" parent="Pattern/WheelControl" unique_id=244332763 instance=ExtResource("3_dhru7")]
-position = Vector2(125, 0)
-
-[node name="LetterWheel5" parent="Pattern/WheelControl" unique_id=88127589 instance=ExtResource("3_dhru7")]
-position = Vector2(250, 0)
-
-[node name="PatternDisplay" type="Node2D" parent="Pattern" unique_id=1830598650]
-position = Vector2(576, 324)
-script = ExtResource("5_yigkb")
-
-[node name="Node2D" type="Node2D" parent="Pattern/PatternDisplay" unique_id=919745804]
-position = Vector2(-250, 0)
-rotation = 1.5707964
-
-[node name="Node2D2" type="Node2D" parent="Pattern/PatternDisplay" unique_id=2027714906]
-position = Vector2(-125, 0)
-rotation = 1.5707964
-
-[node name="Node2D3" type="Node2D" parent="Pattern/PatternDisplay" unique_id=628899533]
-rotation = 1.5707964
-
-[node name="Node2D4" type="Node2D" parent="Pattern/PatternDisplay" unique_id=914043552]
-position = Vector2(125, 0)
-rotation = 1.5707964
-
-[node name="Node2D5" type="Node2D" parent="Pattern/PatternDisplay" unique_id=690807931]
-position = Vector2(250, 0)
-rotation = 1.5707964
-
-[node name="PatternAnim" type="AnimationPlayer" parent="Pattern" unique_id=1006247326]
-libraries/ = SubResource("AnimationLibrary_af7up")
-
-[connection signal="lock_answer" from="Pattern/WheelControl" to="." method="_on_wheel_control_lock_answer"]
+[connection signal="lose" from="." to="." method="_on_lose"]
+[connection signal="win" from="." to="." method="_on_win"]
+[connection signal="lock_answer" from="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D/WheelControl" to="." method="_on_wheel_control_lock_answer"]
+[connection signal="pressed" from="GoosiusLayout/Control/VerticalElementContainer/Control/HBoxContainer/ReferenceRect/CenterContainer/SubmitAssignmentButton" to="." method="_on_submit_assignment_button_pressed"]
