@@ -4,6 +4,8 @@ signal lock_answer(answer_pattern:String)
 @onready var wheels : Array = [
 	$LetterWheel, $LetterWheel2, $LetterWheel3, $LetterWheel4, $LetterWheel5
 ]
+@export var change_wheel_sound : AudioStreamPlayer
+@export var change_symbol_sound : AudioStreamPlayer
 const select_delay_time : float = 0.1
 var select_delay_timer : float = select_delay_time:
 	set(new):
@@ -24,9 +26,15 @@ var index : int = 0:
 		elif new < 0: new = 4
 		index = new
 		wheels[index].is_selected = true
+		if change_wheel_sound != null:
+			var p : float = randf_range(0.75, 0.85)
+			change_wheel_sound.pitch_scale = p
+			change_wheel_sound.play()
 
 func _ready():
 	wheels = get_children()
+	for w in wheels:
+		w.change_symbol_sound = change_symbol_sound
 	wheels[index].is_selected = true
 
 func _input(event):

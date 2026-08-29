@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MicroGameInfo" format=3 uid="uid://mdq33f4i1lct"]
+
+[ext_resource type="PackedScene" uid="uid://dqa7s6wkxnhs3" path="res://micro_games/memory_game/MemoryGame.tscn" id="1_kdw5t"]
+[ext_resource type="Script" uid="uid://dciiueikp53p7" path="res://main/micro_game_info.gd" id="1_oorng"]
+
+[resource]
+script = ExtResource("1_oorng")
+title = "Memory"
+authors = "Everett"
+description = "Remember the pattern"
+game_scene = ExtResource("1_kdw5t")
+metadata/_custom_type_script = "uid://dciiueikp53p7"

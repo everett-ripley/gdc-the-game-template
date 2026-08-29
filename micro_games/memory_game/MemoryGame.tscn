@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://hifs335ga5sw" path="res://micro_games/memory_game/LetterWheel.tscn" id="3_dhru7"]
 [ext_resource type="Script" uid="uid://vosdmxm601dh" path="res://micro_games/memory_game/wheel_control.gd" id="3_vxk7x"]
 [ext_resource type="Texture2D" uid="uid://bhhbd15x645" path="res://micro_games/memory_game/house_icon.png" id="4_qf4s1"]
-[ext_resource type="Texture2D" uid="uid://lk2e7ssnyjc7" path="res://micro_games/memory_game/mobius_reference.jpg" id="4_sjbud"]
 [ext_resource type="Theme" uid="uid://0eedfx2ylk8p" path="res://micro_games/memory_game/goosius_theme.tres" id="5_qf4s1"]
 [ext_resource type="Script" uid="uid://bkjvm3p45akrd" path="res://micro_games/memory_game/pattern_display.gd" id="5_yigkb"]
 [ext_resource type="StyleBox" uid="uid://byqbcjqfx66qs" path="res://micro_games/memory_game/incorrect_answer.tres" id="7_l5ds3"]
+[ext_resource type="AudioStream" uid="uid://c6dl4j6cfg55m" path="res://micro_games/memory_game/select.wav" id="8_a114m"]
 [ext_resource type="Texture2D" uid="uid://0bktss2tj5qk" path="res://micro_games/memory_game/correct_answer_icon.png" id="8_r5x3t"]
+[ext_resource type="AudioStream" uid="uid://0h208rbh8sph" path="res://micro_games/memory_game/change_symbol.wav" id="9_d3r6k"]
 [ext_resource type="StyleBox" uid="uid://3vicldl16pud" path="res://micro_games/memory_game/neutral_answer.tres" id="9_l4rre"]
 [ext_resource type="Texture2D" uid="uid://bn1hkv4uhdfkl" path="res://micro_games/memory_game/incorrect_answer_icon.png" id="9_l5ds3"]
 
@@ -183,6 +184,7 @@ corner_detail = 5
 script = ExtResource("1_56iab")
 correct_panel_style = ExtResource("2_wc13k")
 incorrect_panel_style = ExtResource("7_l5ds3")
+timer_type = 0
 game_duration = 10.0
 post_game_time = 4.0
 
@@ -410,7 +412,7 @@ vertical_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.49019608, 0.49019608, 0.49019608, 1)
 theme_override_font_sizes/font_size = 9
-text = "Recall Game"
+text = "Memory Game"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -434,7 +436,7 @@ layout_mode = 2
 [node name="GameLabel" type="Label" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=83087906]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.22156113, 0.22661927, 0.20134977, 1)
-text = "Recall Game"
+text = "Memory Game"
 
 [node name="ReferenceRect2" type="ReferenceRect" parent="GoosiusLayout/Control/VerticalElementContainer/TimerContainer" unique_id=253780732]
 custom_minimum_size = Vector2(700, 0)
@@ -622,10 +624,19 @@ render_target_update_mode = 4
 
 [node name="Node2D" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport" unique_id=528471553]
 
-[node name="WheelControl" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1697998316]
+[node name="ChangeWheelSound" type="AudioStreamPlayer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D" unique_id=48363612]
+stream = ExtResource("8_a114m")
+pitch_scale = 0.75
+
+[node name="ChangeSymbolSound" type="AudioStreamPlayer" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D" unique_id=546095193]
+stream = ExtResource("9_d3r6k")
+
+[node name="WheelControl" type="Node2D" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D" unique_id=1697998316 node_paths=PackedStringArray("change_wheel_sound", "change_symbol_sound")]
 position = Vector2(235.5, 85)
 scale = Vector2(0.45, 0.45)
 script = ExtResource("3_vxk7x")
+change_wheel_sound = NodePath("../ChangeWheelSound")
+change_symbol_sound = NodePath("../ChangeSymbolSound")
 
 [node name="LetterWheel" parent="GoosiusLayout/Control/VerticalElementContainer/MainGameContainer/PuzzleContainer/PanelContainer/VBoxContainer/Control/Panel/SubViewportContainer/SubViewport/Node2D/WheelControl" unique_id=1839971513 instance=ExtResource("3_dhru7")]
 position = Vector2(-350, 0)
@@ -874,7 +885,6 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(1.105, 1.105)
 pivot_offset = Vector2(576, 324)
-texture = ExtResource("4_sjbud")
 expand_mode = 1
 
 [connection signal="lose" from="." to="." method="_on_lose"]

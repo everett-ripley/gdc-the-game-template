@@ -7,6 +7,9 @@ const scroll_time : float = 0.3
 @onready var path_follows := [
 	$PathFollow2D, $PathFollow2D2, $PathFollow2D3, $PathFollow2D4
 ]
+
+var change_symbol_sound : AudioStreamPlayer
+
 var characters : Array[String] = [
 	"A", "B", "C", "D"
 ]
@@ -45,6 +48,11 @@ func _input(event):
 
 func scroll_wheel(old:int, new:int):
 	is_scrolling = true
+	
+	if change_symbol_sound != null:
+		var p : float = randf_range(0.95, 1.05)
+		change_symbol_sound.pitch_scale = p
+		change_symbol_sound.play()
 	
 	var difference : float = 0.5 - path_follows[new].progress_ratio
 	
